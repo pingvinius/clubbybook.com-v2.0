@@ -1,0 +1,1841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ClubbyBook.Data.Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BirthdayYear" Type="int" />
+          <Property Name="DeathYear" Type="int" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="1024" />
+          <Property Name="Biography" Type="varchar" MaxLength="8192" />
+          <Property Name="PhotoPath" Type="varchar" MaxLength="255" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="Gender" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="authorcomment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="authorrate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="OriginalTitle" Type="varchar" MaxLength="512" />
+          <Property Name="Description" Type="text" />
+          <Property Name="CoverPath" Type="varchar" MaxLength="255" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+          <Property Name="Confirmed" Type="bit" Nullable="false" />
+          <Property Name="Collection" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bookauthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bookcomment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bookgenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bookrate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+          <Property Name="Default" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="4096" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="conversationnotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationId" Type="int" Nullable="false" />
+          <Property Name="IsNew" Type="bit" Nullable="false" />
+          <Property Name="Direction" Type="tinyint" Nullable="false" />
+          <Property Name="FromUserId" Type="int" Nullable="false" />
+          <Property Name="ToUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="district">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="feedbacknotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationId" Type="int" Nullable="false" />
+          <Property Name="IsNew" Type="bit" Nullable="false" />
+          <Property Name="OwnerUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="8192" Nullable="false" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="4096" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Nickname" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Gender" Type="tinyint" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="255" />
+          <Property Name="UrlRewrite" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="systemnotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="IsNew" Type="bit" Nullable="false" />
+          <Property Name="OwnerUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LastAccessDate" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userbook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Offer" Type="int" Nullable="false" />
+          <Property Name="BookType" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="4096" />
+        </EntityType>
+        <EntityType Name="userrole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_authorcomment_author">
+          <End Role="author" Type="Self.author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorcomment" Type="Self.authorcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorcomment">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_authorcomment_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorcomment" Type="Self.authorcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorcomment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_authorrate_book">
+          <End Role="author" Type="Self.author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorrate" Type="Self.authorrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorrate">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_authorrate_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorrate" Type="Self.authorrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorrate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookauthor_author">
+          <End Role="author" Type="Self.author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookauthor" Type="Self.bookauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookauthor">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookauthor_book">
+          <End Role="book" Type="Self.book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookauthor" Type="Self.bookauthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookauthor">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookcomment_book">
+          <End Role="book" Type="Self.book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookcomment" Type="Self.bookcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookcomment">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookcomment_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookcomment" Type="Self.bookcomment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookcomment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookgenre_book">
+          <End Role="book" Type="Self.book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookgenre" Type="Self.bookgenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookgenre">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookgenre_genre">
+          <End Role="genre" Type="Self.genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookgenre" Type="Self.bookgenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookgenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookrate_book">
+          <End Role="book" Type="Self.book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookrate" Type="Self.bookrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookrate">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookrate_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookrate" Type="Self.bookrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookrate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_city_country">
+          <End Role="country" Type="Self.country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_city_district">
+          <End Role="district" Type="Self.district" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="district">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_fromuser">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="Self.conversationnotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="FromUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_notificationid">
+          <End Role="notification" Type="Self.notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="Self.conversationnotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_touser">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="Self.conversationnotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="ToUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_district_country">
+          <End Role="country" Type="Self.country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="district" Type="Self.district" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="district">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feedbacknotification_notificationid">
+          <End Role="notification" Type="Self.notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="feedbacknotification" Type="Self.feedbacknotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedbacknotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feedbacknotification_owneruser">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="feedbacknotification" Type="Self.feedbacknotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedbacknotification">
+              <PropertyRef Name="OwnerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_genre_genre">
+          <End Role="genre" Type="Self.genre" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="genre1" Type="Self.genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="genre1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profile_city">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="profile" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="profile">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profile_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="profile" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_systemnotification_notificationid">
+          <End Role="notification" Type="Self.notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="systemnotification" Type="Self.systemnotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="systemnotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_systemnotification_owneruser">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="systemnotification" Type="Self.systemnotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="systemnotification">
+              <PropertyRef Name="OwnerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userbook_book">
+          <End Role="book" Type="Self.book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userbook" Type="Self.userbook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userbook">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userbook_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userbook" Type="Self.userbook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userbook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrole_role">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userrole" Type="Self.userrole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userrole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrole_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userrole" Type="Self.userrole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userrole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClubbyBookDataModelsStoreContainer">
+          <EntitySet Name="author" EntityType="Self.author" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="authorcomment" EntityType="Self.authorcomment" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="authorrate" EntityType="Self.authorrate" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="book" EntityType="Self.book" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="bookauthor" EntityType="Self.bookauthor" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="bookcomment" EntityType="Self.bookcomment" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="bookgenre" EntityType="Self.bookgenre" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="bookrate" EntityType="Self.bookrate" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="city" EntityType="Self.city" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="conversationnotification" EntityType="Self.conversationnotification" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="district" EntityType="Self.district" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="feedbacknotification" EntityType="Self.feedbacknotification" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="genre" EntityType="Self.genre" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="news" EntityType="Self.news" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="notification" EntityType="Self.notification" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="profile" EntityType="Self.profile" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="systemnotification" EntityType="Self.systemnotification" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="userbook" EntityType="Self.userbook" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <EntitySet Name="userrole" EntityType="Self.userrole" Schema="clubbybook-2.0-dev" store:Type="Tables" />
+          <AssociationSet Name="fk_authorcomment_author" Association="Self.fk_authorcomment_author">
+            <End Role="author" EntitySet="author" />
+            <End Role="authorcomment" EntitySet="authorcomment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_authorcomment_comment" Association="Self.fk_authorcomment_comment">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="authorcomment" EntitySet="authorcomment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_authorrate_book" Association="Self.fk_authorrate_book">
+            <End Role="author" EntitySet="author" />
+            <End Role="authorrate" EntitySet="authorrate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_authorrate_user" Association="Self.fk_authorrate_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="authorrate" EntitySet="authorrate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookauthor_author" Association="Self.fk_bookauthor_author">
+            <End Role="author" EntitySet="author" />
+            <End Role="bookauthor" EntitySet="bookauthor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookauthor_book" Association="Self.fk_bookauthor_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="bookauthor" EntitySet="bookauthor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookcomment_book" Association="Self.fk_bookcomment_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="bookcomment" EntitySet="bookcomment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookcomment_comment" Association="Self.fk_bookcomment_comment">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="bookcomment" EntitySet="bookcomment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookgenre_book" Association="Self.fk_bookgenre_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="bookgenre" EntitySet="bookgenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookgenre_genre" Association="Self.fk_bookgenre_genre">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="bookgenre" EntitySet="bookgenre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookrate_book" Association="Self.fk_bookrate_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="bookrate" EntitySet="bookrate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookrate_user" Association="Self.fk_bookrate_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="bookrate" EntitySet="bookrate" />
+          </AssociationSet>
+          <AssociationSet Name="fk_city_country" Association="Self.fk_city_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="fk_city_district" Association="Self.fk_city_district">
+            <End Role="district" EntitySet="district" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_user" Association="Self.fk_comment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_fromuser" Association="Self.fk_conversationnotification_fromuser">
+            <End Role="user" EntitySet="user" />
+            <End Role="conversationnotification" EntitySet="conversationnotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_notificationid" Association="Self.fk_conversationnotification_notificationid">
+            <End Role="notification" EntitySet="notification" />
+            <End Role="conversationnotification" EntitySet="conversationnotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_touser" Association="Self.fk_conversationnotification_touser">
+            <End Role="user" EntitySet="user" />
+            <End Role="conversationnotification" EntitySet="conversationnotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_district_country" Association="Self.fk_district_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="district" EntitySet="district" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feedbacknotification_notificationid" Association="Self.fk_feedbacknotification_notificationid">
+            <End Role="notification" EntitySet="notification" />
+            <End Role="feedbacknotification" EntitySet="feedbacknotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feedbacknotification_owneruser" Association="Self.fk_feedbacknotification_owneruser">
+            <End Role="user" EntitySet="user" />
+            <End Role="feedbacknotification" EntitySet="feedbacknotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_genre_genre" Association="Self.fk_genre_genre">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="genre1" EntitySet="genre" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profile_city" Association="Self.fk_profile_city">
+            <End Role="city" EntitySet="city" />
+            <End Role="profile" EntitySet="profile" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profile_user" Association="Self.fk_profile_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="profile" EntitySet="profile" />
+          </AssociationSet>
+          <AssociationSet Name="fk_systemnotification_notificationid" Association="Self.fk_systemnotification_notificationid">
+            <End Role="notification" EntitySet="notification" />
+            <End Role="systemnotification" EntitySet="systemnotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_systemnotification_owneruser" Association="Self.fk_systemnotification_owneruser">
+            <End Role="user" EntitySet="user" />
+            <End Role="systemnotification" EntitySet="systemnotification" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userbook_book" Association="Self.fk_userbook_book">
+            <End Role="book" EntitySet="book" />
+            <End Role="userbook" EntitySet="userbook" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userbook_user" Association="Self.fk_userbook_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="userbook" EntitySet="userbook" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrole_role" Association="Self.fk_userrole_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="userrole" EntitySet="userrole" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrole_user" Association="Self.fk_userrole_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="userrole" EntitySet="userrole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClubbyBook.Data.Models" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="ClubbyBook.Data.Models.Author" />
+          <EntitySet Name="AuthorRates" EntityType="ClubbyBook.Data.Models.AuthorRate" />
+          <EntitySet Name="Books" EntityType="ClubbyBook.Data.Models.Book" />
+          <EntitySet Name="BookAuthors" EntityType="ClubbyBook.Data.Models.BookAuthor" />
+          <EntitySet Name="BookGenres" EntityType="ClubbyBook.Data.Models.BookGenre" />
+          <EntitySet Name="BookRates" EntityType="ClubbyBook.Data.Models.BookRate" />
+          <EntitySet Name="Cities" EntityType="ClubbyBook.Data.Models.City" />
+          <EntitySet Name="Comments" EntityType="ClubbyBook.Data.Models.Comment" />
+          <EntitySet Name="ConversationNotifications" EntityType="ClubbyBook.Data.Models.ConversationNotification" />
+          <EntitySet Name="Countries" EntityType="ClubbyBook.Data.Models.Country" />
+          <EntitySet Name="Districts" EntityType="ClubbyBook.Data.Models.District" />
+          <EntitySet Name="FeedbackNotifications" EntityType="ClubbyBook.Data.Models.FeedbackNotification" />
+          <EntitySet Name="Genres" EntityType="ClubbyBook.Data.Models.Genre" />
+          <EntitySet Name="News" EntityType="ClubbyBook.Data.Models.News" />
+          <EntitySet Name="Notifications" EntityType="ClubbyBook.Data.Models.Notification" />
+          <EntitySet Name="Profiles" EntityType="ClubbyBook.Data.Models.Profile" />
+          <EntitySet Name="Roles" EntityType="ClubbyBook.Data.Models.Role" />
+          <EntitySet Name="SystemNotifications" EntityType="ClubbyBook.Data.Models.SystemNotification" />
+          <EntitySet Name="Users" EntityType="ClubbyBook.Data.Models.User" />
+          <EntitySet Name="UserBooks" EntityType="ClubbyBook.Data.Models.UserBook" />
+          <EntitySet Name="UserRoles" EntityType="ClubbyBook.Data.Models.UserRole" />
+          <AssociationSet Name="fk_authorrate_book" Association="ClubbyBook.Data.Models.fk_authorrate_book">
+            <End Role="author" EntitySet="Authors" />
+            <End Role="authorrate" EntitySet="AuthorRates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookauthor_author" Association="ClubbyBook.Data.Models.fk_bookauthor_author">
+            <End Role="author" EntitySet="Authors" />
+            <End Role="bookauthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_authorrate_user" Association="ClubbyBook.Data.Models.fk_authorrate_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="authorrate" EntitySet="AuthorRates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookauthor_book" Association="ClubbyBook.Data.Models.fk_bookauthor_book">
+            <End Role="book" EntitySet="Books" />
+            <End Role="bookauthor" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookgenre_book" Association="ClubbyBook.Data.Models.fk_bookgenre_book">
+            <End Role="book" EntitySet="Books" />
+            <End Role="bookgenre" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookrate_book" Association="ClubbyBook.Data.Models.fk_bookrate_book">
+            <End Role="book" EntitySet="Books" />
+            <End Role="bookrate" EntitySet="BookRates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userbook_book" Association="ClubbyBook.Data.Models.fk_userbook_book">
+            <End Role="book" EntitySet="Books" />
+            <End Role="userbook" EntitySet="UserBooks" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookgenre_genre" Association="ClubbyBook.Data.Models.fk_bookgenre_genre">
+            <End Role="genre" EntitySet="Genres" />
+            <End Role="bookgenre" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="fk_bookrate_user" Association="ClubbyBook.Data.Models.fk_bookrate_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="bookrate" EntitySet="BookRates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_city_country" Association="ClubbyBook.Data.Models.fk_city_country">
+            <End Role="country" EntitySet="Countries" />
+            <End Role="city" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_city_district" Association="ClubbyBook.Data.Models.fk_city_district">
+            <End Role="district" EntitySet="Districts" />
+            <End Role="city" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profile_city" Association="ClubbyBook.Data.Models.fk_profile_city">
+            <End Role="city" EntitySet="Cities" />
+            <End Role="profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_comment_user" Association="ClubbyBook.Data.Models.fk_comment_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_fromuser" Association="ClubbyBook.Data.Models.fk_conversationnotification_fromuser">
+            <End Role="user" EntitySet="Users" />
+            <End Role="conversationnotification" EntitySet="ConversationNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_notificationid" Association="ClubbyBook.Data.Models.fk_conversationnotification_notificationid">
+            <End Role="notification" EntitySet="Notifications" />
+            <End Role="conversationnotification" EntitySet="ConversationNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_conversationnotification_touser" Association="ClubbyBook.Data.Models.fk_conversationnotification_touser">
+            <End Role="user" EntitySet="Users" />
+            <End Role="conversationnotification" EntitySet="ConversationNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_district_country" Association="ClubbyBook.Data.Models.fk_district_country">
+            <End Role="country" EntitySet="Countries" />
+            <End Role="district" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feedbacknotification_notificationid" Association="ClubbyBook.Data.Models.fk_feedbacknotification_notificationid">
+            <End Role="notification" EntitySet="Notifications" />
+            <End Role="feedbacknotification" EntitySet="FeedbackNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_feedbacknotification_owneruser" Association="ClubbyBook.Data.Models.fk_feedbacknotification_owneruser">
+            <End Role="user" EntitySet="Users" />
+            <End Role="feedbacknotification" EntitySet="FeedbackNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_genre_genre" Association="ClubbyBook.Data.Models.fk_genre_genre">
+            <End Role="genre" EntitySet="Genres" />
+            <End Role="genre1" EntitySet="Genres" />
+          </AssociationSet>
+          <AssociationSet Name="fk_systemnotification_notificationid" Association="ClubbyBook.Data.Models.fk_systemnotification_notificationid">
+            <End Role="notification" EntitySet="Notifications" />
+            <End Role="systemnotification" EntitySet="SystemNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_profile_user" Association="ClubbyBook.Data.Models.fk_profile_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrole_role" Association="ClubbyBook.Data.Models.fk_userrole_role">
+            <End Role="role" EntitySet="Roles" />
+            <End Role="userrole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_systemnotification_owneruser" Association="ClubbyBook.Data.Models.fk_systemnotification_owneruser">
+            <End Role="user" EntitySet="Users" />
+            <End Role="systemnotification" EntitySet="SystemNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userbook_user" Association="ClubbyBook.Data.Models.fk_userbook_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="userbook" EntitySet="UserBooks" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userrole_user" Association="ClubbyBook.Data.Models.fk_userrole_user">
+            <End Role="user" EntitySet="Users" />
+            <End Role="userrole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="authorcomment" Association="ClubbyBook.Data.Models.authorcomment">
+            <End Role="author" EntitySet="Authors" />
+            <End Role="comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="bookcomment" Association="ClubbyBook.Data.Models.bookcomment">
+            <End Role="book" EntitySet="Books" />
+            <End Role="comment" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BirthdayYear" Type="Int32" />
+          <Property Name="DeathYear" Type="Int32" />
+          <Property Name="ShortDescription" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="Biography" Type="String" MaxLength="8192" Unicode="false" FixedLength="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+          <Property Name="sbType" Type="SByte" Nullable="false" />
+          <Property Name="sbGender" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="AuthorRates" Relationship="ClubbyBook.Data.Models.fk_authorrate_book" FromRole="author" ToRole="authorrate" />
+          <NavigationProperty Name="BookAuthors" Relationship="ClubbyBook.Data.Models.fk_bookauthor_author" FromRole="author" ToRole="bookauthor" />
+          <NavigationProperty Name="Comments" Relationship="ClubbyBook.Data.Models.authorcomment" FromRole="author" ToRole="comment" />
+        </EntityType>
+        <EntityType Name="AuthorRate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="ClubbyBook.Data.Models.fk_authorrate_book" FromRole="authorrate" ToRole="author" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_authorrate_user" FromRole="authorrate" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="OriginalTitle" Type="String" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
+          <Property Name="CoverPath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+          <Property Name="Collection" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="BookAuthors" Relationship="ClubbyBook.Data.Models.fk_bookauthor_book" FromRole="book" ToRole="bookauthor" />
+          <NavigationProperty Name="BookGenres" Relationship="ClubbyBook.Data.Models.fk_bookgenre_book" FromRole="book" ToRole="bookgenre" />
+          <NavigationProperty Name="BookRates" Relationship="ClubbyBook.Data.Models.fk_bookrate_book" FromRole="book" ToRole="bookrate" />
+          <NavigationProperty Name="UserBooks" Relationship="ClubbyBook.Data.Models.fk_userbook_book" FromRole="book" ToRole="userbook" />
+          <NavigationProperty Name="Comments" Relationship="ClubbyBook.Data.Models.bookcomment" FromRole="book" ToRole="comment" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="ClubbyBook.Data.Models.fk_bookauthor_author" FromRole="bookauthor" ToRole="author" />
+          <NavigationProperty Name="Book" Relationship="ClubbyBook.Data.Models.fk_bookauthor_book" FromRole="bookauthor" ToRole="book" />
+        </EntityType>
+        <EntityType Name="BookGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="ClubbyBook.Data.Models.fk_bookgenre_book" FromRole="bookgenre" ToRole="book" />
+          <NavigationProperty Name="Genre" Relationship="ClubbyBook.Data.Models.fk_bookgenre_genre" FromRole="bookgenre" ToRole="genre" />
+        </EntityType>
+        <EntityType Name="BookRate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="ClubbyBook.Data.Models.fk_bookrate_book" FromRole="bookrate" ToRole="book" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_bookrate_user" FromRole="bookrate" ToRole="user" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Default" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="ClubbyBook.Data.Models.fk_city_country" FromRole="city" ToRole="country" />
+          <NavigationProperty Name="District" Relationship="ClubbyBook.Data.Models.fk_city_district" FromRole="city" ToRole="district" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="4096" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_comment_user" FromRole="comment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="ConversationNotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationId" Type="Int32" Nullable="false" />
+          <Property Name="IsNew" Type="Boolean" Nullable="false" />
+          <Property Name="sbDirection" Type="SByte" Nullable="false" />
+          <Property Name="FromUserId" Type="Int32" Nullable="false" />
+          <Property Name="ToUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FromUser" Relationship="ClubbyBook.Data.Models.fk_conversationnotification_fromuser" FromRole="conversationnotification" ToRole="user" />
+          <NavigationProperty Name="Notification" Relationship="ClubbyBook.Data.Models.fk_conversationnotification_notificationid" FromRole="conversationnotification" ToRole="notification" />
+          <NavigationProperty Name="ToUser" Relationship="ClubbyBook.Data.Models.fk_conversationnotification_touser" FromRole="conversationnotification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cities" Relationship="ClubbyBook.Data.Models.fk_city_country" FromRole="country" ToRole="city" />
+          <NavigationProperty Name="Districts" Relationship="ClubbyBook.Data.Models.fk_district_country" FromRole="country" ToRole="district" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Cities" Relationship="ClubbyBook.Data.Models.fk_city_district" FromRole="district" ToRole="city" />
+          <NavigationProperty Name="Country" Relationship="ClubbyBook.Data.Models.fk_district_country" FromRole="district" ToRole="country" />
+        </EntityType>
+        <EntityType Name="FeedbackNotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationId" Type="Int32" Nullable="false" />
+          <Property Name="IsNew" Type="Boolean" Nullable="false" />
+          <Property Name="OwnerUserId" Type="Int32" />
+          <NavigationProperty Name="Notification" Relationship="ClubbyBook.Data.Models.fk_feedbacknotification_notificationid" FromRole="feedbacknotification" ToRole="notification" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_feedbacknotification_owneruser" FromRole="feedbacknotification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookGenres" Relationship="ClubbyBook.Data.Models.fk_bookgenre_genre" FromRole="genre" ToRole="bookgenre" />
+          <NavigationProperty Name="Children" Relationship="ClubbyBook.Data.Models.fk_genre_genre" FromRole="genre" ToRole="genre1" />
+          <NavigationProperty Name="Parent" Relationship="ClubbyBook.Data.Models.fk_genre_genre" FromRole="genre1" ToRole="genre" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="8192" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="4096" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Nickname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="sbGender" Type="SByte" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UrlRewrite" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="City" Relationship="ClubbyBook.Data.Models.fk_profile_city" FromRole="profile" ToRole="city" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_profile_user" FromRole="profile" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UserRoles" Relationship="ClubbyBook.Data.Models.fk_userrole_role" FromRole="role" ToRole="userrole" />
+        </EntityType>
+        <EntityType Name="SystemNotification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationId" Type="Int32" Nullable="false" />
+          <Property Name="sbType" Type="SByte" Nullable="false" />
+          <Property Name="IsNew" Type="Boolean" Nullable="false" />
+          <Property Name="OwnerUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Notification" Relationship="ClubbyBook.Data.Models.fk_systemnotification_notificationid" FromRole="systemnotification" ToRole="notification" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_systemnotification_owneruser" FromRole="systemnotification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EMail" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastAccessDate" Type="DateTime" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Profiles" Relationship="ClubbyBook.Data.Models.fk_profile_user" FromRole="user" ToRole="profile" />
+          <NavigationProperty Name="UserBooks" Relationship="ClubbyBook.Data.Models.fk_userbook_user" FromRole="user" ToRole="userbook" />
+          <NavigationProperty Name="UserRoles" Relationship="ClubbyBook.Data.Models.fk_userrole_user" FromRole="user" ToRole="userrole" />
+        </EntityType>
+        <EntityType Name="UserBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="iStatus" Type="Int32" Nullable="false" />
+          <Property Name="iOffer" Type="Int32" Nullable="false" />
+          <Property Name="iBookType" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="4096" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Book" Relationship="ClubbyBook.Data.Models.fk_userbook_book" FromRole="userbook" ToRole="book" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_userbook_user" FromRole="userbook" ToRole="user" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="ClubbyBook.Data.Models.fk_userrole_role" FromRole="userrole" ToRole="role" />
+          <NavigationProperty Name="User" Relationship="ClubbyBook.Data.Models.fk_userrole_user" FromRole="userrole" ToRole="user" />
+        </EntityType>
+        <Association Name="fk_authorrate_book">
+          <End Role="author" Type="ClubbyBook.Data.Models.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorrate" Type="ClubbyBook.Data.Models.AuthorRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorrate">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookauthor_author">
+          <End Role="author" Type="ClubbyBook.Data.Models.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookauthor" Type="ClubbyBook.Data.Models.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookauthor">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_authorrate_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="authorrate" Type="ClubbyBook.Data.Models.AuthorRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="authorrate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookauthor_book">
+          <End Role="book" Type="ClubbyBook.Data.Models.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookauthor" Type="ClubbyBook.Data.Models.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookauthor">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookgenre_book">
+          <End Role="book" Type="ClubbyBook.Data.Models.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookgenre" Type="ClubbyBook.Data.Models.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookgenre">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookrate_book">
+          <End Role="book" Type="ClubbyBook.Data.Models.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookrate" Type="ClubbyBook.Data.Models.BookRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookrate">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userbook_book">
+          <End Role="book" Type="ClubbyBook.Data.Models.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userbook" Type="ClubbyBook.Data.Models.UserBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userbook">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookgenre_genre">
+          <End Role="genre" Type="ClubbyBook.Data.Models.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookgenre" Type="ClubbyBook.Data.Models.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookgenre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_bookrate_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bookrate" Type="ClubbyBook.Data.Models.BookRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="bookrate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_city_country">
+          <End Role="country" Type="ClubbyBook.Data.Models.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="city" Type="ClubbyBook.Data.Models.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_city_district">
+          <End Role="district" Type="ClubbyBook.Data.Models.District" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="city" Type="ClubbyBook.Data.Models.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="district">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profile_city">
+          <End Role="city" Type="ClubbyBook.Data.Models.City" Multiplicity="0..1" />
+          <End Role="profile" Type="ClubbyBook.Data.Models.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="profile">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_comment_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment" Type="ClubbyBook.Data.Models.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_fromuser">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="ClubbyBook.Data.Models.ConversationNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="FromUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_notificationid">
+          <End Role="notification" Type="ClubbyBook.Data.Models.Notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="ClubbyBook.Data.Models.ConversationNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_conversationnotification_touser">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="conversationnotification" Type="ClubbyBook.Data.Models.ConversationNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="conversationnotification">
+              <PropertyRef Name="ToUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_district_country">
+          <End Role="country" Type="ClubbyBook.Data.Models.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="district" Type="ClubbyBook.Data.Models.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="district">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feedbacknotification_notificationid">
+          <End Role="notification" Type="ClubbyBook.Data.Models.Notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="feedbacknotification" Type="ClubbyBook.Data.Models.FeedbackNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedbacknotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_feedbacknotification_owneruser">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="0..1" />
+          <End Role="feedbacknotification" Type="ClubbyBook.Data.Models.FeedbackNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedbacknotification">
+              <PropertyRef Name="OwnerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_genre_genre">
+          <End Role="genre" Type="ClubbyBook.Data.Models.Genre" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="genre1" Type="ClubbyBook.Data.Models.Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="genre1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_systemnotification_notificationid">
+          <End Role="notification" Type="ClubbyBook.Data.Models.Notification" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="systemnotification" Type="ClubbyBook.Data.Models.SystemNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="notification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="systemnotification">
+              <PropertyRef Name="NotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_profile_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="profile" Type="ClubbyBook.Data.Models.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrole_role">
+          <End Role="role" Type="ClubbyBook.Data.Models.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userrole" Type="ClubbyBook.Data.Models.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userrole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_systemnotification_owneruser">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="systemnotification" Type="ClubbyBook.Data.Models.SystemNotification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="systemnotification">
+              <PropertyRef Name="OwnerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userbook_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userbook" Type="ClubbyBook.Data.Models.UserBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userbook">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userrole_user">
+          <End Role="user" Type="ClubbyBook.Data.Models.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="userrole" Type="ClubbyBook.Data.Models.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userrole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="authorcomment">
+          <End Role="author" Type="ClubbyBook.Data.Models.Author" Multiplicity="*" />
+          <End Role="comment" Type="ClubbyBook.Data.Models.Comment" Multiplicity="*" />
+        </Association>
+        <Association Name="bookcomment">
+          <End Role="book" Type="ClubbyBook.Data.Models.Book" Multiplicity="*" />
+          <End Role="comment" Type="ClubbyBook.Data.Models.Comment" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClubbyBookDataModelsStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Author">
+              <MappingFragment StoreEntitySet="author">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="BirthdayYear" ColumnName="BirthdayYear" />
+                <ScalarProperty Name="DeathYear" ColumnName="DeathYear" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="sbType" ColumnName="Type" />
+                <ScalarProperty Name="sbGender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorRates">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.AuthorRate">
+              <MappingFragment StoreEntitySet="authorrate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Book">
+              <MappingFragment StoreEntitySet="book">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="OriginalTitle" ColumnName="OriginalTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CoverPath" ColumnName="CoverPath" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="Collection" ColumnName="Collection" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAuthors">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.BookAuthor">
+              <MappingFragment StoreEntitySet="bookauthor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookGenres">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.BookGenre">
+              <MappingFragment StoreEntitySet="bookgenre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookRates">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.BookRate">
+              <MappingFragment StoreEntitySet="bookrate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.City">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+                <ScalarProperty Name="Default" ColumnName="Default" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConversationNotifications">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.ConversationNotification">
+              <MappingFragment StoreEntitySet="conversationnotification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="sbDirection" ColumnName="Direction" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.District">
+              <MappingFragment StoreEntitySet="district">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackNotifications">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.FeedbackNotification">
+              <MappingFragment StoreEntitySet="feedbacknotification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="OwnerUserId" ColumnName="OwnerUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Genre">
+              <MappingFragment StoreEntitySet="genre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.News">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Profile">
+              <MappingFragment StoreEntitySet="profile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="sbGender" ColumnName="Gender" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="UrlRewrite" ColumnName="UrlRewrite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.Role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemNotifications">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.SystemNotification">
+              <MappingFragment StoreEntitySet="systemnotification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="sbType" ColumnName="Type" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="OwnerUserId" ColumnName="OwnerUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.User">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastAccessDate" ColumnName="LastAccessDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBooks">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.UserBook">
+              <MappingFragment StoreEntitySet="userbook">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="iStatus" ColumnName="Status" />
+                <ScalarProperty Name="iOffer" ColumnName="Offer" />
+                <ScalarProperty Name="iBookType" ColumnName="BookType" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="ClubbyBook.Data.Models.UserRole">
+              <MappingFragment StoreEntitySet="userrole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="authorcomment" TypeName="ClubbyBook.Data.Models.authorcomment" StoreEntitySet="authorcomment">
+            <EndProperty Name="author">
+              <ScalarProperty Name="Id" ColumnName="AuthorId" />
+            </EndProperty>
+            <EndProperty Name="comment">
+              <ScalarProperty Name="Id" ColumnName="CommentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="bookcomment" TypeName="ClubbyBook.Data.Models.bookcomment" StoreEntitySet="bookcomment">
+            <EndProperty Name="book">
+              <ScalarProperty Name="Id" ColumnName="BookId" />
+            </EndProperty>
+            <EndProperty Name="comment">
+              <ScalarProperty Name="Id" ColumnName="CommentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

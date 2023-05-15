@@ -1,0 +1,29 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Common.Header
+
+<div class="ContentHeader">
+    <div class="Title">
+        @if (!Model.UseSmallTitle)
+        {
+            <h1>@Model.Title</h1>
+        }
+        else
+        {
+            <h2>@Model.Title</h2>
+        }
+    </div>
+    <div class="Actions">
+        <ul>
+            @if (Model.RightLinks != null)
+            {
+                foreach (var link in Model.RightLinks)
+                {
+                <li>
+                    <a href="@link.Link">@link.Title</a>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="Clear"></div>
+</div>

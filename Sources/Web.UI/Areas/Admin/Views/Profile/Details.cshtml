@@ -1,0 +1,65 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Profile.ProfileViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<div class="page-details">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForDetails(Model.Id, Model.FullName))
+
+    <div class="page-fieldset">
+
+        <dl class="dl-horizontal">
+
+            <dt>@Html.DisplayNameFor(model => model.Image):</dt>
+            <dd>@Html.DisplayFor(model => model.Image)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Email):</dt>
+            <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Name))
+            {
+                <dt>@Html.DisplayNameFor(model => model.Name):</dt>
+                <dd>@Html.DisplayFor(model => model.Name)</dd>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Surname))
+            {
+                <dt>@Html.DisplayNameFor(model => model.Surname):</dt>
+                <dd>@Html.DisplayFor(model => model.Surname)</dd>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Nickname))
+            {
+                <dt>@Html.DisplayNameFor(model => model.Nickname):</dt>
+                <dd>@Html.DisplayFor(model => model.Nickname)</dd>
+            }
+
+            @if (Model.Birthday.HasValue)
+            {
+                <dt>@Html.DisplayNameFor(model => model.Birthday):</dt>
+                <dd>@Html.DisplayFor(model => model.Birthday)</dd>
+            }
+
+            <dt>@Html.DisplayNameFor(model => model.Gender):</dt>
+            <dd>@Html.DisplayFor(model => model.Gender)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.City):</dt>
+            <dd>@Html.DisplayFor(model => model.City)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Roles):</dt>
+            <dd>@Html.DisplayFor(model => model.Roles)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.CreatedDate):</dt>
+            <dd>@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.LastAccessDate):</dt>
+            <dd>@Html.DisplayFor(model => model.LastAccessDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.UrlRewrite):</dt>
+            <dd>@Html.DisplayFor(model => model.UrlRewrite)</dd>
+        </dl>
+    </div>
+</div>

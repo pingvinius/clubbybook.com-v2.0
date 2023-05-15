@@ -1,0 +1,36 @@
+﻿@model ClubbyBook.Web.UI.Models.CityViewModel
+
+@{
+    string controlsClass = string.Empty;
+    string location = this.ViewData["Location"] != null ? this.ViewData["Location"].ToString().ToLower() : "horizontal";
+    if (location == "horizontal")
+    {
+        controlsClass = "pull-left";
+    }
+    else if (location == "vertical")
+    {
+        controlsClass = string.Empty;
+    }
+}
+
+<div class="edit-city-block">
+    <div id="countries" class="@controlsClass">
+        @Html.HiddenFor(m => m.CountryId)
+        <select class="form-control hidden">
+        </select>
+    </div>
+
+    <div id="districts" class="@controlsClass">
+        @Html.HiddenFor(m => m.DistrictId)
+        <select class="form-control hidden">
+        </select>
+    </div>
+
+    <div id="cities" class="@controlsClass">
+        @Html.HiddenFor(m => m.CityId)
+        <select class="form-control hidden">
+        </select>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

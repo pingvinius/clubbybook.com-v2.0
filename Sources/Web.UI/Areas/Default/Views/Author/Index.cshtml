@@ -1,0 +1,68 @@
+﻿@using ClubbyBook.Web.UI.Areas.Default.Models.Author
+
+@model AuthorViewModelList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Авторы"))
+
+@Html.Partial("Search", Html.GetSearchBlockForIndex<AuthorViewModelList, AuthorViewModel, ClubbyBook.Data.Models.Author>(Model))
+
+<div class="ContentDataList">
+    @if (Model.TotalItemCount == 0)
+    {
+        @Html.Partial("Empty")
+    }
+    else
+    {
+        <ul id="authorList">
+            @foreach (var item in Model.Items)
+            {
+                <li id="author-@item.Id" class="DataListItem">
+                    <div class="Image">
+                        <a class="ImageLink" href="@Url.GoTo(DefaultUrlTemplates.ViewBook, item.UrlRewrite)">
+                            <img src="@item.Image.ImageUrl" title="@item.Image.Title}" alt="@item.Image.Alt" />
+                        </a>
+                    </div>
+                    <div class="Data">
+                        <ul class="List">
+                            <li class="Item Title">
+                                <a href="@Url.GoTo(DefaultUrlTemplates.ViewAuthor, item.UrlRewrite)">
+                                    <strong>@item.FullName</strong>
+                                    @if (item.Type.Type == ClubbyBook.Data.Models.AuthorType.PublishingHouse)
+                                    {
+                                        <span>(@Html.DisplayFor(m => item.Type))</span>
+                                    }
+                                </a>
+                            </li>
+                            <li class="Item Label">
+                                Годы жизни: @item.LifeYears
+                            </li>
+                            <li class="Item Label">
+                                Количество книг в наличии: @item.TotalBookCount
+                            </li>
+                            <li class="Item Description">
+                                <p>@UIHelper.GetRestrictedString(item.ShortDescription, UIHelper.AuthorDescriptionMaxLength)</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Actions">
+                        <ul>
+                            <li>
+                                <a class="ImageLink" href="@Url.GoTo(DefaultUrlTemplates.BooksByAuthor, item.UrlRewrite)">
+                                    <img title="Просмотреть список книг" alt="Просмотреть список книг" src="@Url.Content("~/Content/common-images/cb-default-btn-library.png")" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Clear"></div>
+                </li>
+            }
+        </ul>
+
+        @Html.Partial("Paging", Model.PagingInfo)
+    }
+</div>

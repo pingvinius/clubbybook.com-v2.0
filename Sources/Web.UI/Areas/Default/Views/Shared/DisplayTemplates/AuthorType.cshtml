@@ -1,0 +1,14 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Author.AuthorTypeViewModel
+
+@if (Model.Type == ClubbyBook.Data.Models.AuthorType.Person)
+{
+    @: Человек
+}
+else if (Model.Type == ClubbyBook.Data.Models.AuthorType.PublishingHouse)
+{
+    @: Издательство
+}
+else
+{
+    @ClubbyBook.Web.UI.Utilities.UIHelper.NotSpecifiedString
+}

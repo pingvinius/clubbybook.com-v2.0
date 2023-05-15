@@ -1,0 +1,16 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Profile.ProfileRolesViewModel
+
+<div class="edit-role-block">
+    @Html.HiddenFor(m => m.SelectedValueIds)
+
+    @foreach (var item in Model.GetSelectList())
+    {
+        var selectedString = @item.Selected ? "checked='checked'" : string.Empty;
+
+        <div>
+            <input type="checkbox" value="@item.Value" @selectedString />
+            &nbsp;
+            <span>@item.Text</span>
+        </div>
+    }
+</div>

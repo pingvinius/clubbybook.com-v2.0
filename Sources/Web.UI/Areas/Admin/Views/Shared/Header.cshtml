@@ -1,0 +1,21 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Common.Header
+
+<div class="page-header">
+    <div class="pull-left header-title">
+        <h1>
+            @Model.Title
+            @if (Model.ShowSmallPart && !string.IsNullOrWhiteSpace(Model.SmallPartTitle))
+            {
+                <small>@Model.SmallPartTitle</small>
+            }
+        </h1>
+    </div>
+    <div class="pull-right header-button">
+        @foreach (var btn in Model.Buttons.OrderBy(b => !b.IsPrimary))
+        {
+            var className = btn.IsPrimary ? "btn-primary" : "btn-success";
+            <a class="btn @className btn-sm" href="@btn.Url">@btn.Text</a>
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

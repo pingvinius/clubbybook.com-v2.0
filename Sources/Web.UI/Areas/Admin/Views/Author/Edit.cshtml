@@ -1,0 +1,90 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Author.AuthorViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+@section Styles
+{
+    <link href="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/css/admin-edit-author")" rel="stylesheet" />
+}
+
+<div class="page-edit">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForEdit(Model.IsNew ? "Добавление нового автора" : "Редактирование автора"))
+
+    <div class="page-fieldset">
+
+        @Html.Partial("FormNotifications")
+
+        <form method="post" class="form-horizontal">
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.IsNew)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FullName, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Type, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-2">
+                    @Html.EditorFor(m => m.Type)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-2">
+                    @Html.EditorFor(m => m.Gender)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BirthdayYear, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-1">
+                    @Html.TextBoxFor(m => m.BirthdayYear, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DeathYear, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-1">
+                    @Html.TextBoxFor(m => m.DeathYear, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ShortDescription, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(m => m.ShortDescription, new { @class = "form-control", rows = 10 })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Biography, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(m => m.Biography, new { @class = "form-control", rows = 25 })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Image, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.EditorFor(m => m.Image)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            @Html.Partial("FormActions");
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/js/admin-edit-author")"></script>
+}

@@ -1,0 +1,3 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Book.BookGenreViewModel
+
+@Html.DropDownListFor(m => m.SelectedGenreId, Model.GetSelectList(), new { @class = "form-control" })

@@ -1,0 +1,92 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Reader.ReaderViewModel
+
+@section Styles
+{
+    <link href="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/css/default-edit-profile")" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", new ClubbyBook.Web.UI.Areas.Default.Models.Common.Header() { Title = "Редактирование профайла" })
+
+<form method="post">
+    <div class="EditRows">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="Error">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        @Html.HiddenFor(m => m.Id)
+
+        <ul class="EditList">
+            <li class="EditListItem">
+                <div class="Label">Имя:</div>
+                <div class="Value">
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "TextBox" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">Фамилия:</div>
+                <div class="Value">
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Surname, new { @class = "TextBox" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">Псевдоним:</div>
+                <div class="Value">
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Nickname, new { @class = "TextBox" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">Пол:</div>
+                <div class="Value">
+                    <div class="col-lg-2">
+                        @Html.EditorFor(m => m.Gender)
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">Город:</div>
+                <div class="Value">
+                    <div class="col-lg-5">
+                        @Html.EditorFor(m => m.City, new { Location = "vertical" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">Аватарка:</div>
+                <div class="Value">
+                    @Html.EditorFor(m => m.Image)
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Buttons">
+                    <input type="submit" class="Button" value="Сохранить" />
+                    <a href="@Url.GoTo(DefaultUrlTemplates.ViewReader, Model.UrlRewrite)" class="Button">Отмена</a>
+                </div>
+                <div class="Clear"></div>
+            </li>
+        </ul>
+    </div>
+</form>
+@section Scripts
+{
+    <script type="text/javascript" src="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/js/default-edit-profile")"></script>
+}

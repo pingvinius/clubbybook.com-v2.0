@@ -1,0 +1,61 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Account.RegistrationInfo
+
+@{
+    ViewBag.Title = "Зарегистрироваться в социальную сеть любителей книг";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", new ClubbyBook.Web.UI.Areas.Default.Models.Common.Header() { Title = "Регистрация" })
+
+<div class="EditRows">
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="Error">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <form method="post">
+        <ul class="EditList">
+            <li class="EditListItem">
+                <div class="Label">@Html.DisplayNameFor(m => m.Email):<span class="RequaredField">*</span></div>
+                <div class="Value">
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "TextBox", autofocus = "autofocus" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label">@Html.DisplayNameFor(m => m.Password):<span class="RequaredField">*</span></div>
+                <div class="Value">
+                    <div class="col-lg-4">
+                        @Html.PasswordFor(m => m.Password, new { @class = "TextBox" })
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Label"></div>
+                <div class="Value">
+                    <div class="col-lg-8">
+                        <span class="CheckBox">
+                            @Html.CheckBoxFor(m => m.UserAgreement)
+                            <label>
+                                Я прочел и согласен с условиями <a href="@Url.GoTo(DefaultUrlTemplates.UserAgreement)">пользовательского соглашения.</a>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="EditListItem">
+                <div class="Buttons">
+                    <input type="submit" class="Button" value="Регистрация" />
+                </div>
+                <div class="Clear"></div>
+            </li>
+        </ul>
+    </form>
+</div>

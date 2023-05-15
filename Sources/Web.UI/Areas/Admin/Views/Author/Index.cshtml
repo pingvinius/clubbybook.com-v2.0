@@ -1,0 +1,55 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Author.AuthorViewModelList
+
+@{
+    ViewBag.Title = "Авторы";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+
+    string smallPartTitle = Model.TotalItemCount > 0 ? string.Format("(всего {0} авторов)", Model.TotalItemCount) : string.Empty;
+}
+
+<div class="page-index">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForIndex("Авторы", smallPartTitle, true))
+
+    <div class="page-notification" style="display: none;">
+        <div class="alert alert-success">
+        </div>
+    </div>
+
+    @Html.Partial("Search", Model.SearchKey)
+
+    <div class="page-list">
+        @if (Model.TotalItemCount != 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Полное имя</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.GoTo(AdminUrlTemplates.ViewAuthor, item.Id)">@item.FullName</a>
+                            </td>
+                            <td class="all-actions text-center">
+                                <a class="btn btn-primary btn-xs" href="@Url.GoTo(AdminUrlTemplates.EditAuthor, item.Id)">Редактировать</a>
+                                <a class="btn btn-warning btn-xs" href="javascript: void();"
+                                    onclick="adminCommonHelper.deleteEntity(this, '@Url.GoTo(AdminUrlTemplates.DeleteAuthor)', @item.Id); return false;">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.Partial("Paging", Model.PagingInfo)
+        }
+        else
+        {
+            @Html.Partial("Empty")
+        }
+    </div>
+</div>

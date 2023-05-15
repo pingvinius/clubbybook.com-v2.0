@@ -1,0 +1,25 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h1>Ошибка</h1>
+
+<div class="list-sfs-holder">
+    <div class="alert alert-danger">
+        @Model.Exception.Message
+        <p>
+            Controller: @Model.ControllerName<br />
+            Action: @Model.ActionName
+        </p>
+    </div>
+    @if (Model != null)
+    {
+        <div>
+            <div style="overflow: auto">
+                <pre>@Model.Exception.StackTrace</pre>
+            </div>
+        </div>
+    }
+</div>

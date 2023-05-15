@@ -1,0 +1,49 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Author.AuthorViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<div class="page-details">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForDetails(Model.Id, Model.FullName))
+
+    <div class="page-fieldset">
+
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.Image):</dt>
+            <dd>@Html.DisplayFor(model => model.Image)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.FullName):</dt>
+            <dd>@Html.DisplayFor(model => model.FullName)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Type):</dt>
+            <dd>@Html.DisplayFor(model => model.Type)</dd>
+
+            @if (Model.Type.Selected != ClubbyBook.Data.Models.AuthorType.PublishingHouse)
+            {
+                <dt>@Html.DisplayNameFor(model => model.Gender):</dt>
+                <dd>@Html.DisplayFor(model => model.Gender)</dd>
+
+                <dt>@Html.DisplayNameFor(model => model.LifeYearsString):</dt>
+                <dd>@Html.DisplayFor(model => model.LifeYearsString)</dd>
+            }
+
+            <dt>@Html.DisplayNameFor(model => model.ShortDescription):</dt>
+            <dd>@Html.MultilineDisplayFor(model => model.ShortDescription)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Biography):</dt>
+            <dd>@Html.MultilineDisplayFor(model => model.Biography)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.UrlRewrite):</dt>
+            <dd>@Html.DisplayFor(model => model.UrlRewrite)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.CreatedDate):</dt>
+            <dd>@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.LastModifiedDate):</dt>
+            <dd>@Html.DisplayFor(model => model.LastModifiedDate)</dd>
+        </dl>
+    </div>
+</div>

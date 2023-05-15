@@ -1,0 +1,115 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="description" content="ClubbyBook.com">
+    <meta name="author" content="Oleg Kashpur">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/favicon.ico")">
+    <title>Панель администратора - @ViewBag.Title</title>
+    @Styles.Render("~/Bundles/css/admin")
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div id="wrap">
+        <!-- Header -->
+        <header class="navbar-fixed-top">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="@Url.GoTo(CommonUrlTemplates.DefaultSite)">
+                                <i class="glyphicon glyphicon-arrow-left" style="margin-right: 5px;"></i>
+                                Вернутся на сайт
+                            </a>
+                        </li>
+                        <li id="tab-home" class="active">
+                            <a href="@Url.GoTo(CommonUrlTemplates.AdminSite)">
+                                <i class="glyphicon glyphicon-home" style="margin-right: 5px;"></i>
+                                Домашняя
+                            </a>
+                        </li>
+                        <li id="tab-news">
+                            <a href="@Url.GoTo(AdminUrlTemplates.News)">Новости</a>
+                        </li>
+                        <li id="tab-books">
+                            <a href="@Url.GoTo(AdminUrlTemplates.Books)">Книги</a>
+                        </li>
+                        <li id="tab-authors">
+                            <a href="@Url.GoTo(AdminUrlTemplates.Authors)">Автора</a>
+                        </li>
+                        <li id="tab-users">
+                            <a href="@Url.GoTo(AdminUrlTemplates.Readers)">Читатели</a>
+                        </li>
+                        <li id="tab-notifications" class="dropdown">
+                            <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Уведомления <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript: void(0);">Системные уведомления</a>
+                                </li>
+                                @if (AccessManager.HasRole(ClubbyBook.Common.RoleNames.Admin))
+                                {
+                                    <li>
+                                        <a href="@Url.GoTo(AdminUrlTemplates.FeedbackNotifications)">Обратная связь</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                        <li id="tab-tools">
+                            <a href="@Url.GoTo(AdminUrlTemplates.Tools)">Инструменты</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i>
+                                @AccessManager.CurrentIdentity.Email
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.GoTo(CommonUrlTemplates.SignOut)">Выйти</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main content -->
+        <div id="main-content" class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div id="copyright">&copy; ClubbyBook, 2011-2013</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    @Scripts.Render("~/Bundles/js/admin")
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $("nav.navbar ul.nav li").removeClass("active");
+
+            var currentTabId = "@ViewBag.CurrentTabName";
+            if (!isStringEmpty(currentTabId))
+            {
+                $("nav.navbar ul.nav li").removeClass("active");
+                $("nav.navbar ul.nav li#" + currentTabId).addClass("active");
+            }
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

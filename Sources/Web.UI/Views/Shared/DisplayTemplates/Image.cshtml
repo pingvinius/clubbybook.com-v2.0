@@ -1,0 +1,18 @@
+﻿@model ClubbyBook.Web.UI.Models.ImageViewModel
+
+<div class="view-image-block">
+    @{
+        string className = Model.UseBig ? "image-big" : "image-small";
+
+        if (Model.WrapInLink)
+        {
+        <a href="@Model.LinkImageUrl">
+            <img src="@Model.ImageUrl" alt="@Model.Alt" title="@Model.Title" class="@className" />
+        </a>
+        }
+        else
+        {
+        <img src="@Model.ImageUrl" alt="@Model.Alt" title="@Model.Title" class="@className" />
+        }
+    }
+</div>

@@ -1,0 +1,52 @@
+﻿@using ClubbyBook.Web.UI.Areas.Default.Models.News
+
+@model NewsViewModelList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Новости из мира книг"))
+
+@Html.Partial("Search", Html.GetSearchBlockForIndex<NewsViewModelList, NewsViewModel, ClubbyBook.Data.Models.News>(Model))
+
+<div class="ContentDataList">
+
+    @if (Model.TotalItemCount == 0)
+    {
+        @Html.Partial("Empty")
+    }
+    else
+    {
+        <ul id="newsList">
+            @foreach (var item in Model.Items)
+            {
+                <li id="news-@item.Id" class="DataListItem">
+                    <div class="Data OnlyData">
+                        <ul class="List">
+                            <li class="Item Title">
+                                <a href="@Url.GoTo(DefaultUrlTemplates.ViewNews, item.UrlRewrite)">
+                                    <strong>@item.Title</strong>
+                                </a>
+                            </li>
+                            <li class="Item Label">
+                                @UIHelper.GetFullDateString(@item.CreatedDate)
+                            </li>
+                            <li class="Item Description">
+                                <p>@UIHelper.GetRestrictedString(item.Message, UIHelper.NewsDescriptionMaxLength)</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Actions Hidden">
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="Clear"></div>
+                </li>
+            }
+        </ul>
+
+        @Html.Partial("Paging", Model.PagingInfo)
+    }
+</div>

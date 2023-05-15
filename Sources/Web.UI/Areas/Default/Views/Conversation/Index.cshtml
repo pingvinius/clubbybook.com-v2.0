@@ -1,0 +1,168 @@
+﻿@using ClubbyBook.Web.UI.Areas.Default.Models.Conversation
+
+@model ConversationViewModelList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Сообщения"))
+
+    @*<script id="conversationNotificationsScript" language="javascript" type="text/javascript">
+
+        var conversationNotificationsList = null;
+
+        function initializeConversationNotifications() {
+
+            conversationNotificationsList = new UIList(
+              "#conversationNotificationsList",
+              "#conversationNotificationTemplate",
+              '<%= ResolveUrl("~/Services/NotificationsService.asmx/GetConversationNotifications") %>',
+              getConversationNotificationsSearchParameters,
+              {
+                  listItemSelector: ".Conversation .DataListItem",
+                  searchParametersBlockContainerSelector: ".Conversation .SearchParametersBlock",
+                  totalItemCountContainerSelector: "#lbConversationNotificationsTotalItemCount"
+              }
+            );
+
+            $("#tbConversationNotificationsSearch").bind("keypress", function (e) {
+
+                var code = e.keyCode || e.which;
+                if (code === Keys.Enter) {
+
+                    conversationNotificationsList.update();
+                    e.preventDefault();
+                }
+            });
+        }
+
+        function getConversationNotificationsSearchParameters() {
+
+            return [
+              { "paramName": "searchText", "paramValue": $("#tbConversationNotificationsSearch").val() },
+              { "paramName": "userid", "paramValue": <%= UserManagement.CurrentUser.Id %> }
+            ];
+        }
+
+        function markAsReadConversationNotification(id) {
+
+            $.sendAjax({
+                url: '<%= ResolveUrl("~/Services/NotificationsService.asmx/MarkAsReadConversationNotification") %>',
+                params: { "conversationNotificationId": id },
+                success: function (data) {
+
+                    if (engine.utilities.checkServerResult(data.d)) {
+
+                        $("li#conversationnotification_" + id).removeClass("Highlight");
+                        $("li#conversationnotification_" + id + " div.Actions ul li.MarkAsRead").remove();
+
+                        engine.notifications.update(<%= UserManagement.CurrentUser.Id %>);
+                    }
+                    else
+                        engine.eventHandlers.onServerReturnedError();
+                },
+                error: function(error) {
+
+                    engine.eventHandlers.onServerFailed(error);
+                }
+            });
+        }
+
+        function removeConversationNotification(id) {
+
+            $.sendAjax({
+                url: '<%= ResolveUrl("~/Services/NotificationsService.asmx/RemoveConversationNotification") %>',
+                params: { "conversationNotificationId": id },
+                success: function (data) {
+
+                    if (engine.utilities.checkServerResult(data.d)) {
+
+                        var listItem = $("li#conversationnotification_" + id);
+
+                        $(listItem).slideUp(500, function () {
+
+                            $(listItem).remove();
+
+                            engine.eventHandlers.onServerSuccess("Сообщение удалено.");
+
+                            engine.notifications.update(<%= UserManagement.CurrentUser.Id %>);
+                        });
+                    }
+                    else
+                        engine.eventHandlers.onServerReturnedError();
+                },
+                error: function(error) {
+
+                    engine.eventHandlers.onServerFailed(error);
+                }
+            });
+        }
+
+        function replyToConversationNotification(id, toUserId) {
+
+            engine.notifications.sendMessage(
+              <%= UserManagement.CurrentUser.Id %>,
+              toUserId,
+              ".Conversation",
+              function() {
+                  conversationNotificationsList.update();
+              });
+
+            markAsReadConversationNotification(id);
+        }
+
+    </script>
+
+
+<div class="Messages">
+    <ul>
+        <li id="message_{id}" class="DataListItem{{if isNew}} Highlight{{/if}}">
+            <div class="Image">
+                <a class="ImageLink" href="${fromUserLink}">
+                    <img title="${fromUserFullName}" alt="${fromUserFullName}" src="${fromUserPhotoPath}" />
+                </a>
+            </div>
+            <div class="Data">
+                <ul class="List">
+                    <li class="Item Title">
+                        <a href="${fromUserLink}"><strong>${fromUserFullName}</strong></a> -
+                        <a href="${toUserLink}"><strong>${toUserFullName}</strong></a>
+                        (${directionString})
+                    </li>
+                    <li class="Item Title">
+                        ${typeString} (${createdDate})
+                    </li>
+                    <li class="Item Description">
+                        {{html content}}
+                    </li>
+                </ul>
+            </div>
+            <div class="Actions Hidden">
+                <ul>
+                    {{if isNew}}
+                    <li class="MarkAsRead">
+                        <a class="ImageLink" href="javascript: void(0)" onclick="markAsReadConversationNotification(${id}); return false;">
+                            <img title="Пометить как прочитаное" alt="Пометить как прочитаное" src='<%= ResolveUrl("~/Images/Common/MarkNotificationAsRead.png") %>' />
+                        </a>
+                    </li>
+                    {{/if}}
+                    {{if canReply}}
+                    <li class="Reply">
+                        <a class="ImageLink" href="javascript: void(0)" onclick="replyToConversationNotification(${id}, ${fromUserId}); return false;">
+                            <img title="Ответить" alt="Ответить" src='<%= ResolveUrl("~/Images/Common/NotificationReply.png") %>' />
+                        </a>
+                    </li>
+                    {{/if}}
+                    <li class="Remove">
+                        <a class="ImageLink" href="javascript: void(0)" onclick="removeConversationNotification(${id}); return false;">
+                            <img title="Удалить" alt="Удалить" src='<%= ResolveUrl("~/Images/Common/Remove.png") %>' />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="Clear"></div>
+        </li>
+    </ul>
+</div>*@

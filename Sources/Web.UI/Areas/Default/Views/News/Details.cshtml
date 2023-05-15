@@ -1,0 +1,24 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.News.NewsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock(Model.Title))
+
+<div class="ViewRows">
+    <div class="ViewData OnlyData">
+        <ul class="ViewDataList">
+            <li class="ViewDataListItem BottomLine">
+                <div class="Label">Дата создания:</div>
+                <div class="Value">@UIHelper.GetFullDateString(Model.CreatedDate)</div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem Description">
+                @Html.MultilineDisplayFor(m => m.Message)
+            </li>
+        </ul>
+    </div>
+    <div class="Clear"></div>
+</div>

@@ -1,0 +1,92 @@
+﻿@using ClubbyBook.Web.UI.Areas.Default.Models.Book
+
+@model BookViewModelList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Книги"))
+
+@Html.Partial("Search", Html.GetSearchBlockForIndex<BookViewModelList, BookViewModel, ClubbyBook.Data.Models.Book>(Model))
+
+<div class="ContentDataList">
+    @if (Model.TotalItemCount == 0)
+    {
+        @Html.Partial("Empty")
+    }
+    else
+    {
+        <ul id="bookList">
+            @foreach (var item in Model.Items)
+            {
+                <li id="book-@item.Id" class="DataListItem">
+                    <div class="Image">
+                        <a class="ImageLink" href="@Url.GoTo(DefaultUrlTemplates.ViewBook, item.UrlRewrite)">
+                            <img src="@item.Image.ImageUrl" title="@item.Image.Title}" alt="@item.Image.Alt" />
+                        </a>
+                    </div>
+                    <div class="Data">
+                        <ul class="List">
+                            <li class="Item Title">
+                                <a href="@Url.GoTo(DefaultUrlTemplates.ViewBook, item.UrlRewrite)">
+                                    <strong>@item.Title</strong>
+                                    @if (item.Collection)
+                                    {
+                                        <span>(сборник)</span>
+                                    }
+                                </a>
+                            </li>
+                            <li class="Item Label">
+                                @Html.DisplayFor(m => item.AuthorList)
+                            </li>
+                            <li class="Item Label">
+                                @Html.DisplayFor(m => item.GenreList)
+                            </li>
+                            <li class="Item Description">
+                                <p>@UIHelper.GetRestrictedString(item.Description, UIHelper.BookDescriptionMaxLength)</p>
+                            </li>
+                        </ul>
+                    </div>
+                    @if (AccessManager.IsAuthenticated)
+                    {
+                        <div class="Markers">
+                            <ul>
+                                @if (item.ContainsInOtherUserLibraryFromSameCity)
+                                {
+                                    <li>
+                                        <a class="ImageLink" href="javascript: void(0)" onclick="alert('goToUsersFromSameCityList'); return false;">
+                                            <img title="Книга '@item.Title' есть у других пользователей с твоего города. Нажмите для того что бы перейти."
+                                            alt="Книга '@item.Title' есть у других пользователей с твоего города. Нажмите для того что бы перейти."
+                                            src="@Url.Content("~/Content/common-images/cb-default-btn-contains-in-other-user-library.png")" />
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="Actions">
+                            <ul>
+                                <li class="AddBookToLibrary">
+                                    <a class="ImageLink" href="javascript: void(0)" onclick="alert('addBookToLibrary()'); return false;">
+                                        <img title="Добавить в мою библиотеку" alt="Добавить в мою библиотеку"
+                                            src="@Url.Content("~/Content/common-images/cb-default-btn-add-to-library.png")" />
+                                    </a>
+                                </li>
+                                <li class="RemoveBookFromLibrary">
+                                    <a class="ImageLink" href="javascript: void(0)" onclick="alert('removeBookFromLibrary()'); return false;">
+                                        <img title="Удалить из моей библиотеки" alt="Удалить из моей библиотеки"
+                                            src="@Url.Content("~/Content/common-images/cb-default-btn-remove-from-library.png")" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    <div class="Clear"></div>
+                </li>
+            }
+        </ul>
+
+        @Html.Partial("Paging", Model.PagingInfo)
+    }
+</div>

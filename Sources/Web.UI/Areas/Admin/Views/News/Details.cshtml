@@ -1,0 +1,31 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.News.NewsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<div class="page-details">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForDetails(Model.Id, Model.Title))
+
+    <div class="page-fieldset">
+
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.Title):</dt>
+            <dd>@Html.DisplayFor(model => model.Title)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Message):</dt>
+            <dd>@Html.MultilineDisplayFor(model => model.Message)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.UrlRewrite):</dt>
+            <dd>@Html.DisplayFor(model => model.UrlRewrite)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.CreatedDate):</dt>
+            <dd>@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.LastModifiedDate):</dt>
+            <dd>@Html.DisplayFor(model => model.LastModifiedDate)</dd>
+        </dl>
+    </div>
+</div>

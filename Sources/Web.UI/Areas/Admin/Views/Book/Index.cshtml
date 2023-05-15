@@ -1,0 +1,66 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Book.BookViewModelList
+
+@{
+    ViewBag.Title = "Книги";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+
+    string smallPartTitle = Model.TotalItemCount > 0 ? string.Format("(всего {0} книг)", Model.TotalItemCount) : string.Empty;
+}
+
+<div class="page-index">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForIndex("Книги", smallPartTitle, true))
+
+    <div class="page-notification" style="display: none;">
+        <div class="alert alert-success">
+        </div>
+    </div>
+
+    @Html.Partial("Search", Model.SearchKey)
+
+    <div class="page-list">
+        @if (Model.TotalItemCount != 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Авторы</th>
+                        <th>Проверена</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.GoTo(AdminUrlTemplates.ViewBook, item.Id)">@item.Title</a>
+                            </td>
+                            <td class="author-list">
+                                @item.AuthorList.DisplayString
+                            </td>
+                            <td class="confirmed text-center">
+                                @if (item.Confirmed)
+                                {
+                                    <i class="glyphicon glyphicon-check"></i>
+                                }
+                            </td>
+                            <td class="all-actions text-center">
+                                <a class="btn btn-primary btn-xs" href="@Url.GoTo(AdminUrlTemplates.EditBook, item.Id)">Редактировать</a>
+                                <a class="btn btn-warning btn-xs" href="javascript: void();"
+                                    onclick="adminCommonHelper.deleteEntity(this, '@Url.GoTo(AdminUrlTemplates.DeleteBook)', @item.Id); return false;">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.Partial("Paging", Model.PagingInfo)
+        }
+        else
+        {
+            @Html.Partial("Empty")
+        }
+    </div>
+</div>

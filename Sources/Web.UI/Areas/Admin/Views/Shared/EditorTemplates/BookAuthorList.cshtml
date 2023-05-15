@@ -1,0 +1,13 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Book.BookAuthorListViewModel
+
+<div class="edit-author-list-block">
+    @Html.HiddenFor(m => m.SelectedAuthorIds)
+    <input type="text" />
+
+    <select id="initialValues" class="hide">
+        @foreach (var author in Model.SelectedAuthorList)
+        {
+            <option value="@author.Id">@author.FullName</option>
+        }
+    </select>
+</div>

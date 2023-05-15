@@ -1,0 +1,60 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Author.AuthorViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock(Model.FullName, false,
+    new ClubbyBook.Web.UI.Areas.Default.Models.Common.Header.RightLink("Книги автора", 
+        Url.GoTo(DefaultUrlTemplates.BooksByAuthor, Model.UrlRewrite))))
+
+<div class="ViewRows">
+    <div class="ViewLeftSide">
+        <div class="ViewImage">
+            <img src="@Model.Image.ImageUrl" title="@Model.Image.Title" alt="@Model.Image.Alt">
+        </div>
+        <div class="ViewRate">
+        </div>
+    </div>
+    <div class="ViewData">
+        <ul class="ViewDataList">
+            <li class="ViewDataListItem BottomLine">
+                <div class="Label">Тип:</div>
+                <div class="Value">@Html.DisplayFor(m => m.Type)</div>
+                <div class="Clear"></div>
+            </li>
+            @if (Model.Type.Type == ClubbyBook.Data.Models.AuthorType.Person)
+            {
+                <li class="ViewDataListItem">
+                    <div class="Label">Пол:</div>
+                    <div class="Value">@Html.DisplayFor(m => m.Gender)</div>
+                    <div class="Clear"></div>
+                </li>
+                <li class="ViewDataListItem BottomLine">
+                    <div class="Label">Годы жизни:</div>
+                    <div class="Value">@Model.LifeYears</div>
+                    <div class="Clear"></div>
+                </li>
+            }
+            <li class="ViewDataListItem Description">
+                @Html.MultilineDisplayFor(m => m.ShortDescription)
+            </li>
+        </ul>
+    </div>
+    <div class="Clear"></div>
+</div>
+<div class="SpaceBetween"></div>
+
+@Html.Partial("Header", Html.GetHeaderBlock("Биография", true))
+
+<div class="Biography">
+    @Html.MultilineDisplayFor(m => m.Biography)
+</div>
+
+<div class="SpaceBetween"></div>
+
+@Html.Partial("Header", Html.GetHeaderBlock("Коментарии", true))
+
+<div class="Comments">
+</div>

@@ -1,0 +1,1199 @@
+﻿/*
+    Common Styles
+*/
+
+html
+{
+    height: 100%;
+    overflow: scroll;
+}
+
+body
+{
+    background: #f2f2f2 url("/content/common-images/cb-default-background.png") repeat-x;
+    font-family: verdana, tahoma, lucida grande, times new roman, arial;
+    font-style: normal;
+    font-size: 0.8em;
+    color: #3b3b3b;
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+}
+
+h1
+{
+    color: #f05110;
+    font-size: 1.6em;
+    font-weight: normal;
+}
+
+h2
+{
+    color: #f05110;
+    font-size: 1.4em;
+    font-weight: normal;
+}
+
+h3
+{
+    color: #f05110;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+p
+{
+    text-indent: 20px;
+    text-align: justify;
+    line-height: 1.4em;
+}
+
+    p.LargeIndented
+    {
+        text-indent: 40px;
+    }
+
+a
+{
+    cursor: pointer;
+    color: #445a87;
+    text-decoration: none;
+}
+
+    a:hover
+    {
+        text-decoration: underline;
+    }
+
+    a.SmallLink
+    {
+        font-size: 0.8em;
+    }
+
+    a.ImageLink:hover
+    {
+        text-decoration: none;
+    }
+
+    a.HiddenLink:hover
+    {
+        text-decoration: none;
+    }
+
+.LinkSubstitute
+{
+    color: #445a87;
+    text-decoration: none;
+}
+
+.Clear
+{
+    float: none;
+    clear: both;
+}
+
+.Left
+{
+    float: left;
+}
+
+.Right
+{
+    float: right;
+}
+
+.Hidden
+{
+    display: none;
+}
+
+.BottomLine
+{
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #C1CBDA;
+}
+
+.RequaredField
+{
+    color: #f05110;
+    font-family: verdana;
+    font-size: 0.9em;
+}
+
+.Error
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+    background-color: #f05110;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: verdana;
+    font-size: 1.1em;
+    display: block;
+}
+
+    .Error ul
+    {
+        list-style: none;
+    }
+
+        .Error ul li
+        {
+            color: #f0f0f0;
+            line-height: 1.4em;
+        }
+
+/*
+    Skeleton Styles
+*/
+
+#container
+{
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    width: 100%;
+}
+
+    #container div#innerContainer
+    {
+        position: relative;
+        width: 1002px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#header
+{
+    z-index: 2;
+}
+
+    #header #logo
+    {
+        position: absolute;
+        top: -73px;
+        left: 0px;
+    }
+
+    #header #intro
+    {
+        font-size: 0.8em;
+        position: absolute;
+        top: -20px;
+        right: 0px;
+    }
+
+    #header #welcomeMessage
+    {
+        font-size: 0.8em;
+        position: absolute;
+        top: -74px;
+        right: 0px;
+    }
+
+    #header #goToAdminPortal
+    {
+        font-size: 0.8em;
+        position: absolute;
+        top: -54px;
+        right: 0px;
+    }
+
+#navigation
+{
+    background: #ffffff;
+    height: 30px;
+    margin-bottom: 8px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+    #navigation a
+    {
+        font-size: 1.0em;
+    }
+
+    #navigation #general
+    {
+        position: relative; /* for z-index property*/
+        float: left;
+        z-index: 3;
+    }
+
+        #navigation #general ul
+        {
+            margin-left: 120px;
+            margin-top: 6px;
+            list-style: none;
+        }
+
+            #navigation #general ul li
+            {
+                display: inline;
+                margin-right: 10px;
+            }
+
+    #navigation #profile
+    {
+        position: relative; /* for z-index property*/
+        margin-right: 5px;
+        float: right;
+        z-index: 3;
+    }
+
+        #navigation #profile ul
+        {
+            margin-top: 4px;
+            list-style: none;
+        }
+
+            #navigation #profile ul li
+            {
+                display: inline;
+                margin-right: 5px;
+            }
+
+                #navigation #profile ul li img
+                {
+                    width: 20px;
+                    height: 20px;
+                }
+
+#content
+{
+    border: 1px solid #e5e5e5;
+    background: #ffffff;
+    padding: 10px 10px 10px 10px;
+    z-index: 1;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+#footer
+{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+    #footer ul
+    {
+        list-style: none;
+    }
+
+        #footer ul li
+        {
+            display: inline;
+            margin-right: 5px;
+        }
+
+    #footer div#copyright
+    {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+/*
+    Controls Styles
+*/
+
+input.TextBox, textarea.TextBox
+{
+    font-family: verdana;
+    font-size: 1.1em;
+    border: 1px solid #CCCCCC;
+    width: 100%;
+    padding: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+    input.TextBox:hover, textarea.TextBox:hover
+    {
+        background-color: #f8f8f8;
+    }
+
+    input.TextBox:focus, textarea.TextBox:focus
+    {
+        background-color: #f8f8f8;
+    }
+
+    input.TextBox:disabled, textarea.TextBox:disabled
+    {
+        background-color: #f0f0f0;
+    }
+
+    input.TextBox.Find, textarea.TextBox.Find
+    {
+        background-image: url("/content/common-images/cb-default-textbox-find.png");
+        background-repeat: no-repeat;
+        background-position: left center;
+        padding-left: 20px;
+    }
+
+input.Button, a.Button
+{
+    background: #f04f10;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f37340), to(#f04f10));
+    background: -moz-linear-gradient(top, #f37340, #f04f10);
+    padding: 5.5px 11px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+    text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
+    color: #f8f8f8;
+    font-size: 1.0em;
+    font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+    input.Button:hover, a.Button:hover
+    {
+        background: #ff4800;
+    }
+
+    input.Button:active, a.Button:active
+    {
+        background: #ff4800;
+    }
+
+select.form-control
+{
+    font-family: verdana;
+    font-size: 1.1em;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    padding: 3px;
+    background-color: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+    select.form-control:hover
+    {
+        background-color: #f8f8f8;
+    }
+
+    select.form-control:disabled
+    {
+        background-color: #f0f0f0;
+    }
+
+.CheckBox
+{
+    margin: 3px 0px;
+    display: block;
+    position: relative;
+    height: 16px;
+}
+
+    .CheckBox input
+    {
+        position: absolute;
+        left: 0px;
+        top: 2px;
+    }
+
+    .CheckBox label
+    {
+        position: absolute;
+        left: 19px;
+        top: 0px;
+    }
+
+/*
+    Common Pages Styles
+*/
+
+.col-lg-1
+{
+    width: 8.333333333333332%;
+}
+
+.col-lg-2
+{
+    width: 16.666666666666664%;
+}
+
+.col-lg-3
+{
+    width: 25%;
+}
+
+.col-lg-4
+{
+    width: 33.33333333333333%;
+}
+
+.col-lg-5
+{
+    width: 41.66666666666667%;
+}
+
+.col-lg-6
+{
+    width: 50%;
+}
+
+.col-lg-7
+{
+    width: 58.333333333333336%;
+}
+
+.col-lg-8
+{
+    width: 66.66666666666666%;
+}
+
+.col-lg-9
+{
+    width: 75%;
+}
+
+.col-lg-10
+{
+    width: 83.33333333333334%;
+}
+
+.col-lg-11
+{
+    width: 91.66666666666666%;
+}
+
+.col-lg-12
+{
+    width: 100%;
+}
+
+.SpaceBetween
+{
+    display: block;
+    width: 100%;
+    height: 20px;
+}
+
+ul.SimpleList
+{
+    list-style-type: circle;
+    margin-left: 20px;
+}
+
+    ul.SimpleList li
+    {
+    }
+
+.ContentHeader
+{
+    border-bottom: 1px dashed #c1cbda;
+    margin-bottom: 5px;
+}
+
+    .ContentHeader div.Title, div.SmallTitle
+    {
+        float: left;
+        padding-left: 10px;
+        padding-bottom: 2px;
+    }
+
+    .ContentHeader div.SmallTitle h2
+    {
+        padding-top: 3px;
+    }
+
+    .ContentHeader div.Actions
+    {
+        float: right;
+        margin-top: 13px;
+        font-size: 0.8em;
+    }
+
+        .ContentHeader div.Actions ul
+        {
+            list-style: none;
+            margin-bottom: 2px;
+        }
+
+            .ContentHeader div.Actions ul li
+            {
+                display: inline;
+            }
+
+                .ContentHeader div.Actions ul li a
+                {
+                    padding-left: 10px;
+                }
+
+/*
+    Index Pages Styles
+*/
+
+.ContentDataList p.empty-results
+{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #808080;
+}
+
+.ContentDataList ul
+{
+    list-style: none;
+}
+
+    .ContentDataList ul li.DataListItem
+    {
+        position: relative;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px dashed #C1CBDA;
+    }
+
+    .ContentDataList ul li.Highlight
+    {
+        background-color: #edf1f5;
+    }
+
+    .ContentDataList ul li.DataListItem div.Image
+    {
+        float: left;
+        margin-right: 10px;
+        text-align: center;
+    }
+
+        .ContentDataList ul li.DataListItem div.Image img
+        {
+            border: 1px solid #c1cbda;
+            width: 64px;
+            height: 100px;
+        }
+
+    .ContentDataList ul li.DataListItem div.Data
+    {
+        float: left;
+        width: 904px; /* 1002 - 2(border) - 20(margins) - 64(image) - 2(image border) - 10(image margin) = 904 */
+    }
+
+    .ContentDataList ul li.DataListItem div.OnlyData
+    {
+        width: 980px; /* 1002 - 2(border) - 20(margins)= 980 */
+    }
+
+    .ContentDataList ul li.DataListItem div.Data ul.List
+    {
+        list-style: none;
+    }
+
+        .ContentDataList ul li.DataListItem div.Data ul.List li.Item
+        {
+            margin-bottom: 3px;
+            margin-left: 10px;
+        }
+
+        .ContentDataList ul li.DataListItem div.Data ul.List li.Title
+        {
+            width: 85%;
+            font-size: 1.1em;
+        }
+
+        .ContentDataList ul li.DataListItem div.Data ul.List li.Label
+        {
+            font-size: 1.0em;
+        }
+
+        .ContentDataList ul li.DataListItem div.Data ul.List li.Description
+        {
+            font-size: 0.9em;
+            line-height: 1.4em;
+        }
+
+    .ContentDataList ul li.DataListItem div.Actions
+    {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+        .ContentDataList ul li.DataListItem div.Actions ul
+        {
+            list-style-type: none;
+        }
+
+            .ContentDataList ul li.DataListItem div.Actions ul li
+            {
+                display: inline;
+            }
+
+                .ContentDataList ul li.DataListItem div.Actions ul li img
+                {
+                    width: 25px;
+                    height: 25px;
+                }
+
+    .ContentDataList ul li.DataListItem div.Markers
+    {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 5px; /* see .ContentDataList ul li.DataListItem padding*/
+    }
+
+        .ContentDataList ul li.DataListItem div.Markers ul
+        {
+            list-style-type: none;
+        }
+
+            .ContentDataList ul li.DataListItem div.Markers ul li
+            {
+                display: inline;
+            }
+
+                .ContentDataList ul li.DataListItem div.Markers ul li img
+                {
+                    width: 25px;
+                    height: 25px;
+                }
+
+.pagination
+{
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+    .pagination > li
+    {
+        display: inline;
+    }
+
+        .pagination > li > a,
+        .pagination > li > span
+        {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.428571429;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+        }
+
+        .pagination > li:first-child > a,
+        .pagination > li:first-child > span
+        {
+            margin-left: 0;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+        }
+
+        .pagination > li:last-child > a,
+        .pagination > li:last-child > span
+        {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .pagination > li > a:hover,
+        .pagination > li > span:hover,
+        .pagination > li > a:focus,
+        .pagination > li > span:focus
+        {
+            background-color: #eeeeee;
+        }
+
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus
+    {
+        z-index: 2;
+        color: #ffffff;
+        cursor: default;
+        background-color: #428bca;
+        border-color: #428bca;
+    }
+
+    .pagination > .disabled > span,
+    .pagination > .disabled > a,
+    .pagination > .disabled > a:hover,
+    .pagination > .disabled > a:focus
+    {
+        color: #999999;
+        cursor: not-allowed;
+        background-color: #ffffff;
+        border-color: #dddddd;
+    }
+
+.pagination-lg > li > a,
+.pagination-lg > li > span
+{
+    padding: 10px 16px;
+    font-size: 18px;
+}
+
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span
+{
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span
+{
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.pagination-sm > li > a,
+.pagination-sm > li > span
+{
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span
+{
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span
+{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.text-center
+{
+    text-align: center;
+}
+
+.SearchBlock
+{
+    border-bottom: 1px dashed #c1cbda;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+    .SearchBlock div.Simple
+    {
+        position: relative;
+        width: 954px; /* 980(100%) - 6(textbox padding) - 20(find icon padding)*/
+    }
+
+        .SearchBlock div.Simple div.Cancel
+        {
+            position: absolute;
+            right: -20px;
+            top: 3px;
+        }
+
+            .SearchBlock div.Simple div.Cancel img
+            {
+                width: 18px;
+                height: 18px;
+            }
+
+    .SearchBlock div.Advanced
+    {
+        margin-top: 10px;
+        display: none;
+    }
+
+        .SearchBlock div.Advanced ul.FilterList
+        {
+            list-style: none;
+        }
+
+            .SearchBlock div.Advanced ul.FilterList li.FilterItem
+            {
+                margin-bottom: 5px;
+            }
+
+                .SearchBlock div.Advanced ul.FilterList li.FilterItem div.Label
+                {
+                    float: left;
+                    width: 140px;
+                    margin-top: 4px;
+                    margin-left: 5px;
+                }
+
+                .SearchBlock div.Advanced ul.FilterList li.FilterItem div.Field
+                {
+                    float: left;
+                    text-align: left;
+                    width: 400px;
+                }
+
+                    .SearchBlock div.Advanced ul.FilterList li.FilterItem div.Field input[type="text"]
+                    {
+                        width: 400px;
+                    }
+
+                    .SearchBlock div.Advanced ul.FilterList li.FilterItem div.Field select
+                    {
+                        width: 408px;
+                    }
+
+            .SearchBlock div.Advanced ul.FilterList li.Button
+            {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-left: 140px;
+            }
+
+.SearchParametersBlock
+{
+    border-bottom: 1px dashed #c1cbda;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+    .SearchParametersBlock p
+    {
+        text-indent: 0px;
+        font-size: 0.7em;
+        color: #808080;
+    }
+
+.SearchBlock div.Advanced ul.FilterList li.FilterItem div.Field #lstOffer
+{
+    width: 200px;
+    float: left;
+}
+
+.SearchBlock div.Advanced ul.FilterList li.FilterItem div.Field #lstBookType
+{
+    width: 200px;
+    float: left;
+}
+
+/*
+    Details Page Styles
+*/
+
+.ViewRows div.ViewLeftSide
+{
+    float: left;
+    margin-right: 10px;
+}
+
+    .ViewRows div.ViewLeftSide div.ViewImage img
+    {
+        border: 2px solid #c1cbda;
+        width: 192px;
+        height: 300px;
+    }
+
+    .ViewRows div.ViewLeftSide div.ViewRate
+    {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 120px;
+    }
+
+    .ViewRows div.ViewLeftSide div.ViewActions ul
+    {
+        list-style-type: none;
+        text-align: center;
+    }
+
+        .ViewRows div.ViewLeftSide div.ViewActions ul li
+        {
+        }
+
+            .ViewRows div.ViewLeftSide div.ViewActions ul li img
+            {
+                width: 25px;
+                height: 25px;
+            }
+
+.ViewRows div.ViewData
+{
+    float: left;
+    width: 774px; /* 1000 - 20 - 192 - 4 - 10 = 774 */
+}
+
+.ViewRows div.OnlyData /*use full line*/
+{
+    width: 980px; /* 1000 - 20 = 980 */
+}
+
+.ViewRows div.ViewData ul.ViewDataList
+{
+    list-style: none;
+}
+
+    .ViewRows div.ViewData ul.ViewDataList li.ViewDataListItem
+    {
+        margin-bottom: 5px;
+    }
+
+        .ViewRows div.ViewData ul.ViewDataList li.ViewDataListItem div.Label
+        {
+            width: 180px;
+            float: left;
+            text-align: right;
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .ViewRows div.ViewData ul.ViewDataList li.ViewDataListItem div.Value
+        {
+            width: 584px; /*.ViewRows.Data.Width - (.ViewRows.Data.Label.Width +  .ViewRows.Data.Label.Margin) */
+            float: left;
+            font-size: 1.1em;
+            line-height: 1.4em;
+            text-align: justify;
+        }
+
+        .ViewRows div.ViewData ul.ViewDataList li.ViewDataListItem.Description p
+        {
+            line-height: 1.4em;
+            font-size: 0.9em;
+            margin-top: 2px;
+        }
+
+.ViewAddNewBook
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+    .ViewAddNewBook input[type="text"]
+    {
+        width: 695px;
+    }
+
+    .ViewAddNewBook .Fields
+    {
+        float: left;
+        margin-top: 3px;
+    }
+
+    .ViewAddNewBook .Actions
+    {
+        float: right;
+    }
+
+        .ViewAddNewBook .Actions img
+        {
+            width: 30px;
+            height: 30px;
+        }
+
+.Biography p
+{
+    line-height: 1.5em;
+    font-size: 0.9em;
+}
+
+/*
+    Edit Pages Styles
+*/
+
+.EditRows
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+    .EditRows ul.EditList
+    {
+        list-style: none;
+    }
+
+        .EditRows ul.EditList li.EditListItem
+        {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+            .EditRows ul.EditList li.EditListItem div.Label
+            {
+                width: 200px;
+                float: left;
+                text-align: right;
+                margin-right: 10px;
+                margin-top: 2px;
+                font-size: 1.1em;
+            }
+
+            .EditRows ul.EditList li.EditListItem div.Value
+            {
+                float: left;
+                width: 750px; /* 1000 - 20 - 210 - 20 = 750 */
+            }
+
+            .EditRows ul.EditList li.EditListItem div.Buttons
+            {
+                margin-top: 7px;
+                margin-left: 210px;
+            }
+
+.EditInformation p
+{
+    text-align: justify;
+    text-indent: 20px;
+}
+
+/*
+    UserAgreement Page Styles
+*/
+
+.UserAgreement
+{
+    line-height: 1.4em;
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+    .UserAgreement h2
+    {
+        text-align: left;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .UserAgreement h3
+    {
+        text-indent: 20px;
+        text-align: left;
+        font-style: italic;
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+
+    .UserAgreement ul
+    {
+        padding-bottom: 5px;
+    }
+
+        .UserAgreement ul li
+        {
+            margin-left: 40px;
+            list-style-type: circle;
+        }
+
+/*
+    Book Authors Control
+*/
+
+.BookAuthorsList
+{
+}
+
+    .BookAuthorsList ul
+    {
+        list-style-type: none;
+    }
+
+        .BookAuthorsList ul li
+        {
+            margin: 0px;
+            padding: 0px;
+            display: inline-block;
+        }
+
+/*
+    Book Genres Control
+*/
+
+.BookGenresList
+{
+}
+
+    .BookGenresList ul
+    {
+        list-style-type: none;
+    }
+
+        .BookGenresList ul li
+        {
+            margin: 0px;
+            padding: 0px;
+            display: inline-block;
+        }
+
+/*
+    Reader details page
+*/
+
+div#readerBooks table
+{
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+div#readerBooks tr.want-to-read
+{
+    background-color: #f2dede;
+    border-color: #f2dede;
+}
+
+div#readerBooks tr.reading
+{
+    background-color: #fcf8e3;
+    border-color: #fcf8e3;
+}
+
+div#readerBooks tr.read
+{
+    background-color: #dff0d8;
+    border-color: #dff0d8;
+}
+
+div#readerBooks tr.all-user-books
+{
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+}
+
+div#readerBooks tr td
+{
+    padding: 5px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/*
+    Reader edit page
+*/
+
+.EditRows .edit-city-block div
+{
+    margin-bottom: 5px;
+}

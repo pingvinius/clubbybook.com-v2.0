@@ -1,0 +1,106 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Book.BookViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock(Model.Title))
+
+<div class="ViewRows">
+    <div class="ViewLeftSide">
+        <div class="ViewImage">
+            <img src="@Model.Image.ImageUrl" title="@Model.Image.Title" alt="@Model.Image.Alt">
+        </div>
+        <div class="ViewRate">
+        </div>
+        <div class="ViewActions">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="ViewData">
+        <ul class="ViewDataList">
+            <li class="ViewDataListItem">
+                <div class="Label">Авторы:</div>
+                <div class="Value">@Html.DisplayFor(m => m.AuthorList)</div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Жанр:</div>
+                <div class="Value">@Html.DisplayFor(m => m.GenreList)</div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Название оригинала:</div>
+                <div class="Value">@Model.OriginalTitle</div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem BottomLine">
+                <div class="Label">Сборник:</div>
+                <div class="Value">
+                    @if (Model.Collection)
+                    {
+                        @: Да
+                    }
+                    else
+                    {
+                        @: Нет
+                    }
+                </div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Продают:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Покупают:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Обменивают:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Дадут прочесть:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem BottomLine">
+                <div class="Label">Дарят:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Печатные книги:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem">
+                <div class="Label">Электронные книги:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem BottomLine">
+                <div class="Label">Аудиокниги:</div>
+                <div class="Value"><span>-</span></div>
+                <div class="Clear"></div>
+            </li>
+            <li class="ViewDataListItem Description">
+                @Html.MultilineDisplayFor(m => m.Description)
+            </li>
+        </ul>
+    </div>
+    <div class="Clear"></div>
+</div>
+
+<div class="SpaceBetween"></div>
+
+@Html.Partial("Header", Html.GetHeaderBlock("Коментарии", true))
+
+<div class="Comments">
+</div>

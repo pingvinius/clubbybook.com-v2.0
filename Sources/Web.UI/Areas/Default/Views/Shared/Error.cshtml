@@ -1,0 +1,21 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Произошла непредвиденная ошибка"))
+
+@if (Model != null)
+{
+    <div>
+        <div>
+            <b>Exception:</b> @Model.Exception.Message<br />
+            <b>Controller:</b> @Model.ControllerName<br />
+            <b>Action:</b> @Model.ActionName
+        </div>
+        <div style="overflow: scroll">
+            <pre>@Model.Exception.StackTrace</pre>
+        </div>
+    </div>
+}

@@ -1,0 +1,63 @@
+﻿@model Pingvinius.Framework.Mvc.Models.PagingInfo
+
+@if (Model.Count > 1)
+{
+    const int pageCountBeforeOrAfterActive = 4;
+
+    bool nextLinkActive = Model.Index < this.Model.Count - 1;
+    string nextLinkUrl = nextLinkActive ? Url.ReplaceParameter("page", (this.Model.Index + 1).ToString()) : "#";
+    string nextLinkClass = nextLinkActive ? string.Empty : "class=disabled";
+
+    bool prevLinkActive = Model.Index > 0;
+    string prevLinkUrl = prevLinkActive ? Url.ReplaceParameter("page", (this.Model.Index - 1).ToString()) : "#";
+    string prevLinkClass = prevLinkActive ? string.Empty : "class=disabled";
+
+    int startIndex = Model.Index - pageCountBeforeOrAfterActive;
+    startIndex = startIndex < 0 ? 0 : startIndex;
+
+    int endIndex = startIndex + pageCountBeforeOrAfterActive * 2;
+    endIndex = endIndex >= Model.Count ? Model.Count - 1 : endIndex;
+
+    <div class="text-center">
+        <ul class="pagination pagination-sm">
+            <li @prevLinkClass>
+                @if (prevLinkUrl == "#")
+                {
+                    <span>&laquo;</span>
+                }
+                else
+                {
+                    <a href="@prevLinkUrl">&laquo;</a>
+                }
+            </li>
+            @if (startIndex > 0)
+            {
+                <li class="disabled"><span>...</span></li>
+            }
+            @for (int i = startIndex; i <= endIndex; i++)
+            {
+                string itemClass = i == Model.Index ? "class=active" : string.Empty;
+                string link = Url.ReplaceParameter("page", i.ToString());
+                string numberString = (i + 1).ToString();
+
+                <li @itemClass>
+                    <a href="@link">@numberString</a>
+                </li>
+            }
+            @if (endIndex < Model.Count - 1)
+            {
+                <li class="disabled"><span>...</span></li>
+            }
+            <li @nextLinkClass>
+                @if (nextLinkUrl == "#")
+                {
+                    <span>&raquo;</span>
+                }
+                else
+                {
+                    <a href="@nextLinkUrl">&raquo;</a>
+                }
+            </li>
+        </ul>
+    </div>
+}

@@ -1,0 +1,38 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.News.NewsViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<div class="page-edit">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForEdit(Model.IsNew ? "Добавление новой новости" : "Редактирование новости"))
+
+    <div class="page-fieldset">
+
+        @Html.Partial("FormNotifications")
+
+        <form method="post" class="form-horizontal" role="form">
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.IsNew)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Message, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = 25 })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            @Html.Partial("FormActions")
+        </form>
+    </div>
+</div>

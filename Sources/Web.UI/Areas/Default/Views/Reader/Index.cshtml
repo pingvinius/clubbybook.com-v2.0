@@ -1,0 +1,61 @@
+﻿@using ClubbyBook.Web.UI.Areas.Default.Models.Reader
+
+@model ReaderViewModelList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/Master.cshtml";
+}
+
+@Html.Partial("Header", Html.GetHeaderBlock("Читатели"))
+
+@Html.Partial("Search", Html.GetSearchBlockForIndex<ReaderViewModelList, ReaderViewModel, ClubbyBook.Data.Models.Profile>(Model))
+
+<div class="ContentDataList">
+
+    @if (Model.TotalItemCount == 0)
+    {
+        @Html.Partial("Empty")
+    }
+    else
+    {
+        <ul id="readerList">
+            @foreach (var item in Model.Items)
+            {
+                <li id="reader-@item.Id" class="DataListItem">
+                    <div class="Image">
+                        <a class="ImageLink" href="@Url.GoTo(DefaultUrlTemplates.ViewReader, item.UrlRewrite)">
+                            <img src="@item.Image.ImageUrl" title="@item.Image.Title}" alt="@item.Image.Alt" />
+                        </a>
+                    </div>
+                    <div class="Data">
+                        <ul class="List">
+                            <li class="Item Title">
+                                <a href="@Url.GoTo(DefaultUrlTemplates.ViewReader, item.UrlRewrite)">
+                                    <strong>@item.DisplayName</strong>
+                                </a>
+                            </li>
+                            <li class="Item Label">
+                                Псевдоним: @item.Nickname
+                            </li>
+                            <li class="Item Label">
+                                Пол: @item.Gender.DisplayString
+                            </li>
+                            <li class="Item Label">
+                                Город: @item.City.DisplayString
+                            </li>
+                            <li class="Item Label">
+                                Всего книг: @item.TotalBookCount
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Actions Hidden">
+                    </div>
+                    <div class="Clear"></div>
+                </li>
+            }
+        </ul>
+
+        @Html.Partial("Paging", Model.PagingInfo)
+    }
+</div>

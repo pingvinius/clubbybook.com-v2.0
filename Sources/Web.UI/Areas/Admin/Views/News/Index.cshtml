@@ -1,0 +1,58 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.News.NewsViewModelList
+
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+
+    string smallPartTitle = Model.TotalItemCount > 0 ? string.Format("(всего {0} новости)", Model.TotalItemCount) : string.Empty;
+}
+
+<div class="page-index">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForIndex("Новости", smallPartTitle, true))
+
+    <div class="page-notification" style="display: none;">
+        <div class="alert alert-success">
+        </div>
+    </div>
+
+    @Html.Partial("Search", Model.SearchKey)
+
+    <div class="page-list">
+        @if (Model.TotalItemCount != 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Дата создания</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.GoTo(AdminUrlTemplates.ViewNews, item.Id)">@item.Title</a>
+                            </td>
+                            <td class="created-date">
+                                @item.CreatedDate
+                            </td>
+                            <td class="all-actions text-center">
+                                <a class="btn btn-primary btn-xs" href="@Url.GoTo(AdminUrlTemplates.EditNews, item.Id)">Редактировать</a>
+                                <a class="btn btn-warning btn-xs" href="javascript: void();" onclick="adminCommonHelper.deleteEntity(this, '@Url.GoTo(AdminUrlTemplates.DeleteNews)', @item.Id); return false;">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.Partial("Paging", Model.PagingInfo)
+        }
+        else
+        {
+            @Html.Partial("Empty")
+        }
+    </div>
+</div>

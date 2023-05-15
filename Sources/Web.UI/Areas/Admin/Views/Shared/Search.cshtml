@@ -1,0 +1,12 @@
+﻿@model string
+
+<div class="page-search well">
+    <form method="get" class="form-search" defaultbutton="search-key">
+        <div class="input-group">
+            <input class="form-control" name="SearchKey" id="search-key" type="search" autofocus="autofocus" value="@Html.Encode(Model)" />
+            <span class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="Поиск" />
+            </span>
+        </div>
+    </form>
+</div>

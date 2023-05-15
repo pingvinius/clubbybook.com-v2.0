@@ -1,0 +1,63 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.FeedbackNotification.FeedbackNotificationViewModelList
+
+@{
+    ViewBag.Title = "Feedback Notifications";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<div class="page-index">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForIndex("Обратная связь", string.Empty, false))
+
+    <div class="page-list">
+        @if (Model.TotalItemCount != 0)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Пользователь</th>
+                        <th>Дата создания</th>
+                        <th>Сообщение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        var rowClasses = item.IsNotificationNew ? "success" : string.Empty;
+                        
+                        <tr class="@rowClasses">
+                            <td class="user-full-name">
+                                @if (item.User.IsAnonymous)
+                                {
+                                    @item.User.UserName
+                                }
+                                else
+                                {
+                                    <a href="@Url.GoTo(AdminUrlTemplates.ViewReader, @item.User.ProfileId)">@item.User.UserName</a>
+                                }
+                            </td>
+                            <td class="created-date">
+                                @item.CreatedDate
+                            </td>
+                            <td>
+                                @item.Message
+                            </td>
+                            <td class="all-actions text-center">
+                                <a class="btn btn-primary btn-xs" href="javascript: void();" 
+                                   onclick="adminCommonHelper.markFeedbackNotificationAsRead(this, @item.Id); return false;">Прочесть</a>
+                                <a class="btn btn-warning btn-xs" href="javascript: void();" onclick="adminCommonHelper.deleteEntity(this, '@Url.GoTo(
+                                    AdminUrlTemplates.DeleteFeedbackNotification)', @item.Id); return false;">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.Partial("Paging", Model.PagingInfo)
+        }
+        else
+        {
+            @Html.Partial("Empty")
+        }
+    </div>
+</div>

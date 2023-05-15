@@ -1,0 +1,192 @@
+﻿/*
+    Common Styles
+*/
+
+html, body
+{
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+#wrap
+{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0px auto -41px;
+}
+
+h1
+{
+    font-size: 1.9em;
+    line-height: 30px;
+}
+
+h2
+{
+    font-size: 1.7em;
+    line-height: 30px;
+}
+
+h3
+{
+    font-size: 1.5em;
+    line-height: 30px;
+}
+
+#main-content
+{
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+footer
+{
+    height: 40px;
+}
+
+footer
+{
+    background-color: #e5e5e5;
+    text-align: center;
+    border-top: 1px solid gray;
+}
+
+    footer #copyright
+    {
+        padding: 10px 0px;
+        font-weight: bold;
+    }
+
+/*
+    Common Pages Styles
+*/
+
+div.page-header
+{
+    padding: 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+    div.page-header .header-button
+    {
+        margin: 20px 0px 0px 0px;
+    }
+
+    div.page-header .header-title
+    {
+        width: 800px;
+    }
+
+/*
+    Index Pages Styles
+*/
+.page-index .page-search form
+{
+    margin: 0px 0px;
+}
+
+.page-index .page-list table.table
+{
+    margin-bottom: 0px;
+}
+
+    .page-index .page-list table.table tbody tr td.city
+    {
+        width: 100px;
+    }
+
+    .page-index .page-list table.table tbody tr td.roles
+    {
+        width: 100px;
+    }
+
+    .page-index .page-list table.table tbody tr td.created-date
+    {
+        width: 150px;
+    }
+
+    .page-index .page-list table.table tbody tr td.user-full-name
+    {
+        width: 150px;
+    }
+
+    .page-index .page-list table.table tbody tr td.confirmed
+    {
+        width: 100px;
+    }
+
+    .page-index .page-list table.table tbody tr td.author-list
+    {
+        width: 250px;
+    }
+
+    .page-index .page-list table.table tbody tr td.all-actions
+    {
+        width: 180px;
+    }
+
+    .page-index .page-list table.table tbody tr td.edit-action
+    {
+        width: 80px;
+    }
+
+/*
+    Edit Pages Styles
+*/
+.page-edit .page-header .header-button
+{
+    margin: 10px 0px 0px 0px;
+}
+
+.page-edit .page-fieldset fieldset legend
+{
+    border: none;
+}
+
+.page-edit .page-fieldset .alert ul
+{
+    margin: 0px 10px 0px 10px;
+}
+
+.page-edit .page-fieldset textarea
+{
+    text-align: justify;
+}
+
+.page-edit .page-fieldset input[type="checkbox"]
+{
+    margin-top: 12px;
+}
+
+.page-edit .page-fieldset .edit-city-block div
+{
+    margin-right: 5px;
+}
+
+/*
+    Details Pages Styles
+*/
+
+.page-details .page-fieldset .dl-horizontal dt
+{
+    width: 200px;
+}
+
+.page-details .page-fieldset .dl-horizontal dd
+{
+    margin-left: 220px;
+}
+
+.page-details .page-fieldset dl dd
+{
+    margin-bottom: 5px;
+}
+
+    .page-details .page-fieldset dl dd p
+    {
+        text-align: justify;
+        margin: 0px 0px 5px 0px;
+        text-indent: 0px;
+    }

@@ -1,0 +1,90 @@
+﻿@model ClubbyBook.Web.UI.Areas.Admin.Models.Book.BookViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+@section Styles
+{
+    <link href="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/css/admin-edit-book")" rel="stylesheet" />
+}
+
+<div class="page-edit">
+
+    @Html.Partial("Header", Html.GetHeaderBlockForEdit(Model.IsNew ? "Добавление новой книги" : "Редактирование книги"))
+
+    <div class="page-fieldset">
+
+        @Html.Partial("FormNotifications")
+
+        <form method="post" class="form-horizontal">
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.IsNew)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Confirmed, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.CheckBoxFor(m => m.Confirmed)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OriginalTitle, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextBoxFor(m => m.OriginalTitle, new { @class = "form-control" })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AuthorList, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-4">
+                    @Html.EditorFor(m => m.AuthorList)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Genre, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-4">
+                    @Html.EditorFor(m => m.Genre)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Collection, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.CheckBoxFor(m => m.Collection)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 25 })
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Image, new { @class = "control-label col-lg-2" })
+                <div class="col-lg-9">
+                    @Html.EditorFor(m => m.Image)
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            @Html.Partial("FormActions")
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="@BundleTable.Bundles.ResolveBundleUrl("~/Bundles/js/admin-edit-book")"></script>
+}

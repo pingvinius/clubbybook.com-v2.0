@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46E7164C-A987-4751-879B-BD63FF1B9829}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pingvinius.Framework</RootNamespace>
+    <AssemblyName>Pingvinius.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\FxCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.2.1\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Attributes\AccessPermissionAttribute.cs" />
+    <Compile Include="Attributes\DataAnnotations\DigitsAttribute.cs" />
+    <Compile Include="Attributes\DataAnnotations\IntegerAttribute.cs" />
+    <Compile Include="Attributes\DataAnnotations\NumericAttribute.cs" />
+    <Compile Include="Attributes\DataAnnotations\YearAttribute.cs" />
+    <Compile Include="Attributes\NoBrowserCacheAttribute.cs" />
+    <Compile Include="Attributes\UrlRewriteAttribute.cs" />
+    <Compile Include="DbContext\Exceptions\DbContextAlreadyInitializedException.cs" />
+    <Compile Include="DbContext\DbContextManager.cs" />
+    <Compile Include="DbContext\Exceptions\DbContextNotFoundException.cs" />
+    <Compile Include="DbContext\Exceptions\DbContextNotInitializedException.cs" />
+    <Compile Include="DbContext\IDbContext.cs" />
+    <Compile Include="DbContext\IDbContextFactory.cs" />
+    <Compile Include="DbContext\IDbContextStore.cs" />
+    <Compile Include="DbContext\WebDbContextStore.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Mvc\Controllers\IAutoCompleteReady.cs" />
+    <Compile Include="Tree\ITreeItem.cs" />
+    <Compile Include="Entities\IDeletable.cs" />
+    <Compile Include="Entities\IUrlRewriteable.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\ITrackable.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="Extensions\HtmlHelperExtension.cs" />
+    <Compile Include="Mailing\Mail.cs" />
+    <Compile Include="Mailing\MailHelper.cs" />
+    <Compile Include="Mapping\BaseMapping.cs" />
+    <Compile Include="Mapping\BaseMapper.cs" />
+    <Compile Include="Mapping\Exceptions\MappingIsNotFoundException.cs" />
+    <Compile Include="Mapping\Exceptions\MapperIsNotInitializedException.cs" />
+    <Compile Include="Mapping\IMapper.cs" />
+    <Compile Include="Mapping\Mapper.cs" />
+    <Compile Include="Mvc\Controllers\AbstractController.cs" />
+    <Compile Include="Mvc\Models\EnumViewModel.cs" />
+    <Compile Include="Mvc\Models\ViewModelList.cs" />
+    <Compile Include="Mvc\Models\ViewModel.cs" />
+    <Compile Include="Mvc\Models\EntityViewModel.cs" />
+    <Compile Include="Mvc\Models\EntityViewModelList.cs" />
+    <Compile Include="Mvc\Models\PagingInfo.cs" />
+    <Compile Include="Mvc\Overrides\FixedJsonValueProviderFactory.cs" />
+    <Compile Include="Repositories\BaseEntityRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\IUrlRewriteEntityRepository.cs" />
+    <Compile Include="Repositories\Resolving\IRepositoryResolver.cs" />
+    <Compile Include="Repositories\RepositoryFactory.cs" />
+    <Compile Include="Repositories\Exceptions\RepositoryFactoryIsNotInitializedException.cs" />
+    <Compile Include="Repositories\SelectCriteria\BaseSelectCriteria.cs" />
+    <Compile Include="Repositories\SelectCriteria\BaseUrlRewriteSelectCriteria.cs" />
+    <Compile Include="Repositories\SelectCriteria\BaseOrderBySelectCriteria.cs" />
+    <Compile Include="Repositories\SelectCriteria\PagingSelectCriteria.cs" />
+    <Compile Include="Repositories\SelectCriteria\SelectCriteriaType.cs" />
+    <Compile Include="Repositories\IEntityRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\SelectCriteria\ISelectCriteria.cs" />
+    <Compile Include="Repositories\SelectCriteria\BaseWhereSelectCriteria.cs" />
+    <Compile Include="Security\AccessManager.cs" />
+    <Compile Include="Security\AccessManagerIsNotInitializedException.cs" />
+    <Compile Include="Security\IAccessManagerProvider.cs" />
+    <Compile Include="Security\IUserIdentity.cs" />
+    <Compile Include="Tree\FlatTreeItem.cs" />
+    <Compile Include="Tree\TreeItem.cs" />
+    <Compile Include="Utilities\AttributeHelper.cs" />
+    <Compile Include="Utilities\ParsingHelper.cs" />
+    <Compile Include="Utilities\DateTimeHelper.cs" />
+    <Compile Include="Utilities\LatinizeHelper.cs" />
+    <Compile Include="Utilities\Md5Helper.cs" />
+    <Compile Include="Extensions\UrlHelperExtension.cs" />
+    <Compile Include="Tree\TreeHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml">
+      <Link>CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,21 @@
+﻿@model ClubbyBook.Web.UI.Areas.Default.Models.Common.Search
+
+<div class="SearchBlock">
+    <form method="get" defaultbutton="search-key">
+        <div class="Simple">
+            <input type="text" id="search-key" name="SearchKey" class="TextBox Find" autofocus="autofocus" value="@Html.Encode(Model.SearchKey)" />
+            <div class="Cancel">
+                <a class="ImageLink" href="javascript: void(0)" onclick='$("#search-key").val(""); $("#search-key").focus();'>
+                    <img src="@Url.Content("~/Content/common-images/cb-default-btn-cancel.png")" alt="Очистить ввод" title="Очистить ввод" />
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@if (Model.TotalItemCount != 0)
+{
+    <div class="SearchParametersBlock">
+        <p id="lbTotalItemCount">@UIHelper.GetTotalItemCountString(Model.TotalItemCount)</p>
+    </div>
+}

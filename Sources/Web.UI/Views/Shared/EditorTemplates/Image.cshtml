@@ -1,0 +1,48 @@
+﻿@model ClubbyBook.Web.UI.Models.ImageViewModel
+
+<div class="view-image-block">
+    <img src="@Model.ImageUrl" title="@Model.Title" alt="@Model.Alt" class="image-big" />
+</div>
+
+<div class="edit-image-block">
+    @Html.HiddenFor(m => m.ImageUrl)
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m => m.Alt)
+    @Html.HiddenFor(m => m.LinkImageUrl)
+    @Html.HiddenFor(m => m.UseBig)
+    @Html.HiddenFor(m => m.NewTempImageUrl)
+    @Html.HiddenFor(m => m.ApplyDecorator)
+
+    <div class="link">
+        <a href="#edit-image-model-div" data-toggle="modal">Редактировать изображение</a>
+    </div>
+
+    <div id="edit-image-model-div" class="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="modal-label" class="modal-title">Загрузка изображения</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="loading info text-center">
+                        <p class="text-center">Подождите... Выполняется загрузка изображения...</p>
+                    </div>
+                    <div class="preview text-center">
+                        <img src="" alt="Предпросмотр" />
+                    </div>
+                    <div class="error text-center">
+                    </div>
+                    <div class="actions text-center">
+                        <input type="file" id="image-file-input" class="hide" />
+                        <a id="image-file-select" href="javascript: void(0)">Выбрать изображение</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default btn-sm" data-dismiss="modal">Отмена</button>
+                    <button class="btn btn-primary btn-sm">Применить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="description" content="ClubbyBook.com">
+    <meta name="author" content="Oleg Kashpur">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/favicon.ico")">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Bundles/css/default")
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div id="container">
+        <div id="innerContainer">
+            <div id="header">
+                <div id="logo">
+                    <a href="@Url.GoTo(CommonUrlTemplates.DefaultSite)" class="ImageLink">
+                        <img src="@Url.Content("~/content/common-images/cb-default-logo.png")" />
+                    </a>
+                </div>
+                <div id="intro">
+                </div>
+                @if (AccessManager.IsAuthenticated && this.ViewBag.CurrentUser != null)
+                {
+                    <div id="welcomeMessage">
+                        Добро пожаловать, @UIHelper.GetProfileFullName(this.ViewBag.CurrentUser.Profile, false)
+                    </div>
+
+                    if (AccessManager.HasRole(ClubbyBook.Common.RoleNames.Admin) || AccessManager.HasRole(ClubbyBook.Common.RoleNames.Editor))
+                    {
+                    <div id="goToAdminPortal">
+                        <a href="@Url.GoTo(CommonUrlTemplates.AdminSite)">Войти в админку</a>
+                    </div>
+                    }
+                }
+            </div>
+            <div id="navigation">
+                <div id="general">
+                    <ul>
+                        <li><a href="@Url.GoTo(CommonUrlTemplates.DefaultSite)">На главную</a></li>
+                        <li><a href="@Url.GoTo(DefaultUrlTemplates.Books)">Книги</a></li>
+                        <li><a href="@Url.GoTo(DefaultUrlTemplates.Authors)">Авторы</a></li>
+                        <li><a href="@Url.GoTo(DefaultUrlTemplates.Readers)">Читатели</a></li>
+                        <li><a href="@Url.GoTo(DefaultUrlTemplates.News)">Новости</a></li>
+                    </ul>
+                </div>
+                <div id="profile">
+                    @if (AccessManager.IsAuthenticated && this.ViewBag.CurrentUser != null)
+                    {
+                        string currentUserLink = this.ViewBag.CurrentUser.Profile.UrlRewrite;
+                        <ul>
+                            <li><a href="@Url.GoTo(DefaultUrlTemplates.Messages)">Сообщения</a></li>
+                            <li><a href="@Url.GoTo(DefaultUrlTemplates.ViewReader, currentUserLink)">Профайл</a></li>
+                            <li><a href="@Url.GoTo(CommonUrlTemplates.SignOut)">Выход</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul>
+                            <li><a href="@Url.GoTo(CommonUrlTemplates.Registration)">Регистрация</a></li>
+                            <li><a href="@Url.GoTo(CommonUrlTemplates.SignIn)">Вход</a></li>
+                        </ul>
+                    }
+                </div>
+                <div class="Clear">
+                </div>
+            </div>
+            <div id="content">
+                @RenderBody()
+            </div>
+            <div id="footer">
+                <ul>
+                    <li><a href="@Url.GoTo(DefaultUrlTemplates.About)">О проекте</a></li>
+                    <li>@Html.Partial("Feedback")</li>
+                    <li><a href="@Url.GoTo(DefaultUrlTemplates.UserAgreement)">Пользовательское соглашение</a></li>
+                    <li><a href="@Url.GoTo(DefaultUrlTemplates.SiteMap)">Карта сайта</a></li>
+                    <li><a href="@Url.GoTo(DefaultUrlTemplates.Contacts)">Контакты</a></li>
+                </ul>
+                <div id="copyright">
+                    ClubbyBook (с) 2011 - 2013
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    @Scripts.Render("~/Bundles/js/default")
+    @RenderSection("Scripts", false)
+</body>
+</html>
